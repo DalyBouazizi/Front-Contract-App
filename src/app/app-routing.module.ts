@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import path from 'path';
 import { ManagementComponent } from './core/components/management/management.component';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
-import { UserDashComponent } from './core/components/user-dash/user-dash.component';
+import { UsermanagementComponent } from './core/components/usermanagement/usermanagement.component';
+
 const routes: Routes = [
   {path: 'management',
     component: ManagementComponent,
@@ -12,9 +13,9 @@ const routes: Routes = [
   {path: 'dashboard',
     component: DashboardComponent,
   },
-  {path: 'UserCP',
-    component: UserDashComponent,
-  },
+  {path: 'userCP',
+    component: UsermanagementComponent,
+  }
 ];
 
 @NgModule({
