@@ -1,0 +1,28 @@
+/* make navbar look like floating has shadow */
+.navbar {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: rgba(46, 0, 139, 0.15) !important ;
+  
+}
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    flex-wrap: nowrap; 
+  }
+.iconexit{
+    fill: currentColor;
+}
+.navbar-nav .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    /* font-weight: 600;  */
+    color: #000; /* You can adjust the color as needed */
+    font-size: 1rem; /* Adjust the font size as necessary */
+    /* letter-spacing: 0.5px; */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ae1aa4; /* Spotify green for hover effect */
+    font-weight: 600;
+}
