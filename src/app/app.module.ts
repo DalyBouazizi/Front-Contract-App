@@ -6,6 +6,8 @@ import { ManagementComponent } from './core/components/management/management.com
 import { UsermanagementComponent } from './core/components/usermanagement/usermanagement.component';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    
+    provideClientHydration(),
+    provideHttpClient(withFetch()) , // Enable fetch API in HttpClient
   ],
   bootstrap: [AppComponent]
 })

@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 15px;
-    background-color: #DEE3F4;
+    background-color: rgba(172, 179, 206, 0.3);
 }
 
 .card-header {
@@ -40,10 +40,10 @@
     align-self: center;
 }
 .btnz{
-    background-color: #AF70EB;
+    background-color: #347da7;
     color: white;
 }
 .btnz:hover{
     background-color:white;
-    color: #AF70EB;
+    color: #347da7;
 }

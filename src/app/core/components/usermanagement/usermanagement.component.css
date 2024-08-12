@@ -2,35 +2,24 @@
     display: flex;
     flex-direction: column; /* Ensure items are stacked vertically */
     align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-    
-   
+    justify-content: center; 
   }
   .table {
     width: 100%;
-    /* border: solid 3px; */
-    border-radius: 10px !important; /* Add rounded corners */
-     /* Ensure borders don't collapse */
-  
+    border-radius: 10px !important;
+    overflow: hidden;
      border-spacing: 0; /* Remove spacing between cells */
-    overflow: hidden; /* Ensure border-radius is applied */
-    border-radius: 18px; /* Add rounded corners */
+    border-radius: 18px;
+    --bs-table-bg: aliceblue;
+  
+
   }
-  
-  .table th, .table td {
-     /* Add borders to all cells */
-   
-  
-  }
-  
+
   .table-container{
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 90%;
-    
+    width: 90%;  
   }
-  
-  
   .add-user-container {
     width: 100%;
     display: flex;
