@@ -14,9 +14,15 @@
   
 
   }
-
+  .table td {
+    line-height: 1; /* Adjust line height as needed */
+    padding: 5px; /* Adjust padding to control spacing */
+}.table td {
+    line-height: 1.2; /* Adjust line height as needed */
+    padding: 5px; /* Adjust padding to control spacing */
+}
   .table-container{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
     width: 90%;  
   }
@@ -24,8 +30,16 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    
   }
- 
+  .add-user-container a{
+    background-color: rgba(52, 125, 167, 0.7) !important;
+    color: white;
+  }
+   .add-user-container a:hover{
+      background-color: #ACBBDA !important;
+      color: white;
+    }  
   
   
   

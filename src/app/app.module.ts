@@ -8,6 +8,7 @@ import { DashboardComponent } from './core/components/dashboard/dashboard.compon
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { UseraddformComponent } from './core/components/useraddform/useraddform.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } fro
     NavbarComponent,
     ManagementComponent,
     UsermanagementComponent,
-    DashboardComponent
+    DashboardComponent,
+    UseraddformComponent
   ],
   imports: [
     BrowserModule,

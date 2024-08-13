@@ -1,0 +1,66 @@
+<div class="parentcontainer">
+    <div class="formcontainer">
+       
+    <form (ngSubmit)="onFormSubmit()">
+        <h2  style="text-align: center;">Add new user</h2>
+        <div class="mb-3">
+
+            <div *ngIf="employeeExists === true && userExists === false" style="color: rgb(9, 100, 9); " class="mb-2">
+                <svg class="icon"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                    <path  d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                    </svg>
+                    Valid employee's ID</div>
+            <div *ngIf="employeeExists === false && userExists === false" style="color: rgb(182, 0, 0);"class="mb-2">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                </svg>
+                Invalid employee's ID</div>
+                <div *ngIf="userExists === true" style="color: rgb(143, 5, 5); " class="mb-2">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                        <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                        </svg>
+                        User already exists</div>
+          <label for="exampleInputMatricule" class="form-label">Registration number</label>
+          <input name="RegistrationNumber"type="number" class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp"  [(ngModel)]="model.matricule"  (keyup)="checkmatricule($event); checkuser($event)">
+          <div id="MatriculeHelp" class="form-text">Registration number must be of an existing employee</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputFName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="FirstName" name="FirstName" [(ngModel)]="model.nom">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputLName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" [(ngModel)]="model.prenom">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword" class="form-label"  >Password
+
+                <span class="info-icon" tabindex="0">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 50 50">
+                        <path class="icon" d="M25,2C12.297,2,2,12.297,2,25s10.297,23,23,23s23-10.297,23-23S37.703,2,25,2z M25,11c1.657,0,3,1.343,3,3s-1.343,3-3,3 s-3-1.343-3-3S23.343,11,25,11z M29,38h-2h-4h-2v-2h2V23h-2v-2h2h4v2v13h2V38z"></path>
+                    </svg>
+                    <div class="tooltip-text">
+                        - At least one lowercase letter<br>
+                        - At least one uppercase letter<br>
+                        - At least one digit<br>
+                        - At least one special character<br>
+                        - Minimum length of 8 characters
+                    </div> 
+                </span>
+
+            </label>
+             <input  name="Password" type="password" class="form-control" id="Password" [(ngModel)]="model.password" (keyup)="checkPasswordStrength($event)">
+             <div *ngIf="password" >
+             <div class="password-strength-bar" >
+             <div [ngClass]="passwordStrengthClass"></div>
+            </div>
+            <div [style.color]="passwordStrengthColor">{{ passwordStrengthMessage }}</div>
+        </div>
+        
+        </div>
+        <button type="submit" class="btn btnz mt-2" [disabled]="employeeExists === false || userExists === true ||passwordStrengthClass != 'strong' " >Submit</button>
+      </form>
+    </div>
+</div>
+
