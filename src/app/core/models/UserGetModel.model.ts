@@ -1,5 +1,5 @@
 export interface UserGetModel{
-    matricule: number;
+    matricule: number ;
     nom : string;
     prenom : string;
     password : string;

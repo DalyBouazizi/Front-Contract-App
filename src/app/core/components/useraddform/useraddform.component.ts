@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserserviceService } from '../../services/userservice.service';
 import { Router } from '@angular/router';
 import { UserGetModel } from '../../models/UserGetModel.model';
+import { EmployeeModel } from '../../models/EmployeeModel.model';
+import { response } from 'express';
+import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
 
 
 @Component({
@@ -17,10 +20,13 @@ export class UseraddformComponent implements OnInit{
   passwordStrengthColor: string = '';
   passwordStrengthClass: string = '';
   password: string = '';
-  model: UserGetModel = { matricule: 0 , nom: '', prenom: '', password:'' };;
+  model: UserGetModel = { matricule: 0 , nom: '', prenom: '', password:'' };
+  employee : EmployeeModel | null = null;
 
   //Rest of code
-  constructor(private userService: UserserviceService, private router: Router) { }
+  constructor(private userService: UserserviceService, private router: Router
+    ,private navigationStateService: NavigationStateServiceService
+  ) { }
   
   ngOnInit(): void {}
 
@@ -31,9 +37,14 @@ export class UseraddformComponent implements OnInit{
                 if (id) {
                   this.userService.checkEmployeeExists(Number(id)).subscribe({
                     next: (response) => {
+                      this.employee = response;
+                      this.model.nom = this.employee.nom;
+                      this.model.prenom = this.employee.prenom;
                       this.employeeExists = true; 
+                      
                     },
                     error: (error) => {
+                      
                       this.employeeExists = false; // Assume employee does not exist if error occurs
                     }
                   });
@@ -80,9 +91,8 @@ export class UseraddformComponent implements OnInit{
                   .subscribe({
                     next: (response :string) => {
                       console.log(response)  ;
-                    
-                      // console.log('this was successful')
-                      this.router.navigate(['/userCP']);
+                      this.navigationStateService.setUserAdded(true);
+                      this.router.navigate(['/userCP'] , { state: { added: true } });
               
                     },
                     error: (error) => {
@@ -91,7 +101,11 @@ export class UseraddformComponent implements OnInit{
                       console.log(this.model)  
                     }
                   })
-          }
+                }
+                clearinput(){
+                  this.model.nom = '';
+                  this.model.prenom = '';
+                }
     
     
     }

@@ -21,16 +21,16 @@
                         </svg>
                         User already exists</div>
           <label for="exampleInputMatricule" class="form-label">Registration number</label>
-          <input name="RegistrationNumber"type="number" class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp"  [(ngModel)]="model.matricule"  (keyup)="checkmatricule($event); checkuser($event)">
+          <input name="RegistrationNumber"type="number" class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp"  [(ngModel)]="model.matricule"  (blur)="checkmatricule($event);  checkuser($event);"  (keydown)="clearinput();" (keyup)="checkmatricule($event);  checkuser($event)">
           <div id="MatriculeHelp" class="form-text">Registration number must be of an existing employee</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputFName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="FirstName" name="FirstName" [(ngModel)]="model.nom">
+          <input type="text" class="form-control" id="FirstName" name="FirstName" [(ngModel)]="model.nom" disabled>
         </div>
         <div class="mb-3">
             <label for="exampleInputLName" class="form-label">Last name</label>
-            <input type="text" class="form-control" id="LastName" name="LastName" [(ngModel)]="model.prenom">
+            <input type="text" class="form-control" id="LastName" name="LastName" [(ngModel)]="model.prenom" disabled>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword" class="form-label"  >Password

@@ -1,0 +1,38 @@
+:host {
+    display: block;
+    background-color: #f5f5f5; /* Change the dialog background color */
+    border-radius: 10px; /* Adjust border radius */
+    padding: 5px; /* Add padding to the dialog */
+  }
+.custom-dialog-title {
+    color: #981515; /* Customize the title color */
+    font-weight: bold;
+  }
+  .icon{
+    margin-top: -6px;
+  }
+  
+  .custom-dialog-content {
+    font-size: 1.1em;
+    color: #444;
+    overflow: hidden;
+  }
+  
+  .custom-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .custom-dialog-actions button {
+    margin-left: 10px;
+    border-radius: 7px;
+background-color: #7191E6;
+color: beige;
+padding: 10px 20px; /* Increase padding for a larger button */
+border: none !important;
+  }
+
+    .custom-dialog-actions button:hover{
+        background-color: #8797C2;
+        color: beige;
+    }

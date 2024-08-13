@@ -1,0 +1,24 @@
+<div class="parentcontainer">
+    <div class="formcontainer">
+       
+    <form>
+        <a class="sebn-image" href="#">
+            <img src="https://www.keejob.com/media/recruiter/recruiter_29279/logo-29279-20231225-145559.png" alt="logo" width="350" height="70" class="d-inline-block align-text-top">
+            </a>
+        <div class="mb-3">
+          <label for="exampleInputMatricule" class="form-label">Registration number</label>
+          <input name="RegistrationNumber"type="number" class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp"  placeholder="Ex: 11 , 285 ..." [(ngModel)]="user.matricule">
+         
+        </div>
+          <div class="mb-3">
+            <label for="exampleInputLName" class="form-label">Password</label>
+             <input  name="Password" type="password" class="form-control" id="Password" [(ngModel)]="user.password">
+             
+        
+        
+        </div>
+        <button type="submit" class="btn btnz mt-2" >Login</button>
+      </form>
+    </div>
+</div>
+

@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { UseraddformComponent } from './core/components/useraddform/useraddform.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ConfirmDialogComponent } from './core/components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginComponent } from './core/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,18 +22,23 @@ import { UseraddformComponent } from './core/components/useraddform/useraddform.
     ManagementComponent,
     UsermanagementComponent,
     DashboardComponent,
-    UseraddformComponent
+    UseraddformComponent,
+    ConfirmDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     
     provideClientHydration(),
-    provideHttpClient(withFetch()) , // Enable fetch API in HttpClient
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync() , // Enable fetch API in HttpClient
   ],
   bootstrap: [AppComponent]
 })

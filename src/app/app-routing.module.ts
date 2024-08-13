@@ -5,12 +5,13 @@ import { ManagementComponent } from './core/components/management/management.com
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { UsermanagementComponent } from './core/components/usermanagement/usermanagement.component';
 import { UseraddformComponent } from './core/components/useraddform/useraddform.component';
+import { LoginComponent } from './core/components/login/login.component';
 
 const routes: Routes = [
   {path: 'management',
     component: ManagementComponent,
   },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Default route
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
   {path: 'dashboard',
     component: DashboardComponent,
   },
@@ -18,7 +19,7 @@ const routes: Routes = [
     component: UsermanagementComponent,
   },
   {
-    path: 'userADD', component: UseraddformComponent,
+    path: 'login', component: LoginComponent,
   }
 ];
 
