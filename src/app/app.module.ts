@@ -14,6 +14,7 @@ import { ConfirmDialogComponent } from './core/components/confirm-dialog/confirm
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './core/components/login/login.component';
+import { AuthInterceptor } from './core/services/authinterceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LoginComponent } from './core/components/login/login.component';
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimationsAsync() , // Enable fetch API in HttpClient
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, }
   ],
   bootstrap: [AppComponent]
 })
