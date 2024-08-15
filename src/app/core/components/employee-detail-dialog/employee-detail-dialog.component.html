@@ -1,0 +1,37 @@
+<div mat-dialog-content class="dialog-content">
+
+  <div class="first-section">
+   
+    <h1><strong></strong> {{ data.nom }} {{ data.prenom }}</h1>
+    
+  </div>
+
+  <hr class="separator" />
+
+  <div class="second-section">
+    <p><strong>Matricule:</strong> {{ data.matricule }}</p>
+    <p><strong>CIN:</strong> {{ data.cin }}</p>
+    <p><strong>Poste:</strong> {{ data.poste }}</p>
+  </div>
+
+  <hr class="separator" />
+
+  <div class="third-section">
+    <p><strong>Address:</strong> {{ data.adresse }}</p>
+    <p><strong>Date of Birth:</strong> {{ data.dateNaissance | date:'shortDate' }}</p>
+    <p><strong>Place of Birth:</strong> {{ data.lieuNaissance }}</p>
+    <p><strong>Date CIN:</strong> {{ data.dateCin | date:'shortDate' }}</p>
+    <p><strong>Category:</strong> {{ data.categoriePro }}</p>
+   
+  </div>
+  <hr class="separator" />
+<div class="third-section">
+
+  <p><strong>Base Salary:</strong> {{ data.salaireb | currency }}</p>
+  <p><strong>Net Salary:</strong> {{ data.salairen | currency }}</p>
+</div>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button [mat-dialog-close]="true">Close</button>
+</div>

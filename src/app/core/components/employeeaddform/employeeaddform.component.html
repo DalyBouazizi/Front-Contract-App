@@ -1,0 +1,104 @@
+
+
+<div class="parentcontainer">
+    <div class="formcontainer">
+        
+      
+        <form  (ngSubmit)="onFormSubmit()"  >
+            <h2 style="text-align: center;">Add Employee</h2>
+            <div class="alertgroup">
+            
+            <div *ngIf="FormValid === false;" style="color: rgb(182, 0, 0); " class="mb-2">
+                <svg class="icon"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                    <path  d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                    </svg>
+                    Please fill all fields</div>
+            <div *ngIf="employeeExists === false " style="color: rgb(9, 100, 9); " class="mb-2">
+                <svg class="icon"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                    <path  d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                    </svg>
+                    Valid employee's ID</div>
+            <div *ngIf="employeeExists === true " style="color: rgb(182, 0, 0);"class="mb-2">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                </svg>
+                Employee's Id is taken</div>
+                <div *ngIf="CinExists === false " style="color: rgb(9, 100, 9); " class="mb-2">
+                    <svg class="icon"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                        <path  d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                        </svg>
+                        Valid employee's CIN</div>
+                <div *ngIf="CinExists === true " style="color: rgb(182, 0, 0);"class="mb-2">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                    <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                    </svg>
+                    Employee's CIN exists already</div>
+              
+                <div *ngIf="CinValid === false " style="color: rgb(182, 0, 0);"class="mb-2">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
+                    <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
+                    </svg>
+                    Cin must be 8 numbers</div>
+                </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    
+                    <label for="exampleInputMatricule" >Registration number</label>
+                   
+                    <input  [(ngModel)]="model.matricule" name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp" (keyup)="checkmatricule($event); FormValid = true">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="cin">CIN</label>
+                  
+                    <input  [(ngModel)]="model.cin" type="text" class="form-control" type="number"id="cin" name="cin" placeholder="CIN" (keyup)="checkCinExists($event); FormValid = true" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input  [(ngModel)]="model.nom" type="text" class="form-control" id="nom" name="nom" placeholder="Nom" (keydown)="FormValid = true" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prenom</label>
+                    <input   [(ngModel)]="model.prenom" type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom"(keydown)="FormValid = true" required>
+                </div>
+                <div class="form-group">
+                    <label for="poste">Poste</label>
+                    <select [(ngModel)]="model.poste" name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste" >
+                        <option value="" disabled selected>Choose a position...</option>
+                        <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input  [(ngModel)]="model.adresse" type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" (keydown)="FormValid = true" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateNaissance">Date de Naissance</label>
+                    <input  [(ngModel)]="model.dateNaissance" type="date" class="form-control" id="dateNaissance" name="dateNaissance" (keydown)="FormValid = true">
+                </div>
+                <div class="form-group">
+                    <label for="lieuNaissance">Lieu de Naissance</label>
+                    <input  [(ngModel)]="model.lieuNaissance" type="text" class="form-control" id="lieuNaissance" name="lieuNaissance" placeholder="Lieu de Naissance" (keydown)="FormValid = true"required>
+                </div>
+               
+                <div class="form-group">
+                    <label for="dateCin">Date de CIN</label>
+                    <input  [(ngModel)]="model.dateCin" type="date" class="form-control" id="dateCin" name="dateCin" (keydown)="FormValid = true">
+                </div>
+                <div class="form-group">
+                    <label for="categoriePro">Categorie Professionelle</label>
+                    <input  [(ngModel)]="model.categoriePro" type="text" class="form-control" id="categoriePro" name="categoriePro" placeholder="Categorie Professionelle"  (keydown)="FormValid = true"required>
+                </div>
+                <div class="form-group">
+                    <label for="salaireb">Salaire Brut</label>
+                    <input   [(ngModel)]="model.salaireb"type="number" class="form-control" id="salaireb" name="salaireb" placeholder="Salaire Brut" (keydown)="FormValid = true">
+                </div>
+                <div class="form-group">
+                    <label for="salairen">Salaire Net</label>
+                    <input  [(ngModel)]="model.salairen" type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net" (keydown)="FormValid = true">
+                </div>
+            </div>
+            <button type="submit" class="btn btnz mt-3" [disabled]="employeeExists === true || CinExists === true" >Submit</button>
+        </form>
+    </div>
+</div>

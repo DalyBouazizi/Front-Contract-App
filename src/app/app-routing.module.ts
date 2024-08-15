@@ -1,25 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import path from 'path';
 import { ManagementComponent } from './core/components/management/management.component';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { UsermanagementComponent } from './core/components/usermanagement/usermanagement.component';
 import { UseraddformComponent } from './core/components/useraddform/useraddform.component';
 import { LoginComponent } from './core/components/login/login.component';
+import { authGuard } from './core/guard/auth.guard'; // Import the guard
+import { EmployeeaddformComponent } from './core/components/employeeaddform/employeeaddform.component';
+import { EmployeemanagementComponent } from './core/components/employeemanagement/employeemanagement.component';
 
 const routes: Routes = [
-  {path: 'management',
+  {
+    path: 'management',
     component: ManagementComponent,
-  },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
-  {path: 'dashboard',
-    component: DashboardComponent,
-  },
-  {path: 'userCP',
-    component: UsermanagementComponent,
+    canActivate: [authGuard], // Apply guard
   },
   {
-    path: 'login', component: LoginComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard], // Apply guard
+  },
+  {
+    path: 'userCP',
+    component: UsermanagementComponent,
+    canActivate: [authGuard], // Apply guard
+  },
+  {
+    path: 'userADD',
+    component: UseraddformComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+  {
+    path: 'EmployeeADD',
+    component: EmployeeaddformComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+
+  {
+    path: 'EmployeeCP',
+    component: EmployeemanagementComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
   }
 ];
 

@@ -1,0 +1,59 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  p{
+
+    font-size: 17px;
+    
+  }
+  .dialog-content ,.dialog-actions{
+    background-color: #EFE7F7 !important;
+    color: black;
+
+  }
+
+
+  .first-section {
+   text-align: center;
+  }
+  .second-section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .second-section p {
+    width: 25%; /* Adjust the width to fit four items in a row */
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+  .separator {
+    margin: 20px 0; /* Adjust the margin to fit your layout needs */
+  }
+  
+  .third-section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .third-section p {
+    width: 25%; /* Adjust the width to fit two items in a row */
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+.dialog-actions button {
+    margin-left: 10px;
+    border-radius: 7px;
+background-color: #7191E6;
+color: beige;
+padding: 10px 20px; /* Increase padding for a larger button */
+border: none !important;
+  }
+
+  .dialog-actions button:hover{
+        background-color: #8797C2;
+        color: beige;
+    }

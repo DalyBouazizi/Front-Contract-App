@@ -1,0 +1,44 @@
+.parent-container {
+    display: flex;
+    flex-direction: column; /* Ensure items are stacked vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; 
+  }
+  .table {
+    width: 100%;
+    border-radius: 10px !important;
+    overflow: hidden;
+     border-spacing: 0; /* Remove spacing between cells */
+    border-radius: 18px;
+    --bs-table-bg: aliceblue;
+  
+
+  }
+  .table td {
+    line-height: 1; /* Adjust line height as needed */
+    padding: 5px; /* Adjust padding to control spacing */
+}.table td {
+    line-height: 1.2; /* Adjust line height as needed */
+    padding: 5px; /* Adjust padding to control spacing */
+}
+  .table-container{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 90%;  
+  }
+  .add-user-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    
+  }
+ 
+  .add-user-container a{
+    background-color: rgba(52, 125, 167, 0.7) !important;
+    color: white;
+  }
+   .add-user-container a:hover{
+      background-color: #ACBBDA !important;
+      color: white;
+    }  
+ 

@@ -15,6 +15,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './core/components/login/login.component';
 import { AuthInterceptor } from './core/services/authinterceptor';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { EmployeemanagementComponent } from './core/components/employeemanagement/employeemanagement.component';
+import { EmployeeaddformComponent } from './core/components/employeeaddform/employeeaddform.component';
+import { EmployeeDetailDialogComponent } from './core/components/employee-detail-dialog/employee-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { AuthInterceptor } from './core/services/authinterceptor';
     DashboardComponent,
     UseraddformComponent,
     ConfirmDialogComponent,
-    LoginComponent
+    LoginComponent,
+    EmployeemanagementComponent,
+    EmployeeaddformComponent,
+    EmployeeDetailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +43,12 @@ import { AuthInterceptor } from './core/services/authinterceptor';
     MatSnackBarModule
   ],
   providers: [
-    
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    provideAnimationsAsync() , // Enable fetch API in HttpClient
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, }
+    provideAnimationsAsync(), // Enable fetch API in HttpClient
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    JwtHelperService, // Add this line
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS } // Add this line if needed for configuration
   ],
   bootstrap: [AppComponent]
 })
