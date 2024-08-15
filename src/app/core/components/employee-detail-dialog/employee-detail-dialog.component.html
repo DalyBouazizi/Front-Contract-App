@@ -1,3 +1,4 @@
+
 <div mat-dialog-content class="dialog-content">
 
   <div class="first-section">
@@ -12,6 +13,7 @@
     <p><strong>Matricule:</strong> {{ data.matricule }}</p>
     <p><strong>CIN:</strong> {{ data.cin }}</p>
     <p><strong>Poste:</strong> {{ data.poste }}</p>
+    <p><strong>Category:</strong> {{ data.categoriePro }}</p>
   </div>
 
   <hr class="separator" />
@@ -21,7 +23,7 @@
     <p><strong>Date of Birth:</strong> {{ data.dateNaissance | date:'shortDate' }}</p>
     <p><strong>Place of Birth:</strong> {{ data.lieuNaissance }}</p>
     <p><strong>Date CIN:</strong> {{ data.dateCin | date:'shortDate' }}</p>
-    <p><strong>Category:</strong> {{ data.categoriePro }}</p>
+    
    
   </div>
   <hr class="separator" />
@@ -29,6 +31,11 @@
 
   <p><strong>Base Salary:</strong> {{ data.salaireb | currency }}</p>
   <p><strong>Net Salary:</strong> {{ data.salairen | currency }}</p>
+</div>
+<hr class="separator" />
+<div class="third-section">
+  <h3>Contracts hitsory </h3>
+  
 </div>
 </div>
 

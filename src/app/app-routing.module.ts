@@ -8,6 +8,7 @@ import { LoginComponent } from './core/components/login/login.component';
 import { authGuard } from './core/guard/auth.guard'; // Import the guard
 import { EmployeeaddformComponent } from './core/components/employeeaddform/employeeaddform.component';
 import { EmployeemanagementComponent } from './core/components/employeemanagement/employeemanagement.component';
+import { EmployeeupdateformComponent } from './core/components/employeeupdateform/employeeupdateform.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'EmployeeCP',
     component: EmployeemanagementComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+  {
+    path: 'EmployeeUpdate',
+    component: EmployeeupdateformComponent,
     canActivate: [authGuard], // Apply guard (if needed)
   },
   {

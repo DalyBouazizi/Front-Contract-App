@@ -4,7 +4,7 @@ export interface EmployeeModel {
     prenom: string;
     poste: string;
     adresse: string;
-    dateNaissance?: Date; // Optional property
+    dateNaissance: Date; // Optional property
     lieuNaissance: string;
     cin?: string;
     dateCin: Date; // Optional property

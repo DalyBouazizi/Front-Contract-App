@@ -19,6 +19,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { EmployeemanagementComponent } from './core/components/employeemanagement/employeemanagement.component';
 import { EmployeeaddformComponent } from './core/components/employeeaddform/employeeaddform.component';
 import { EmployeeDetailDialogComponent } from './core/components/employee-detail-dialog/employee-detail-dialog.component';
+import { EmployeeupdateformComponent } from './core/components/employeeupdateform/employeeupdateform.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { EmployeeDetailDialogComponent } from './core/components/employee-detail
     LoginComponent,
     EmployeemanagementComponent,
     EmployeeaddformComponent,
-    EmployeeDetailDialogComponent
+    EmployeeDetailDialogComponent,
+    EmployeeupdateformComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { EmployeeDetailDialogComponent } from './core/components/employee-detail
     MatSnackBarModule
   ],
   providers: [
+    DatePipe,
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(), // Enable fetch API in HttpClient

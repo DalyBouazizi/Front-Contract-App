@@ -26,7 +26,6 @@ export class AuthService {
 isAuthenticated(): boolean {
   if (typeof window !== 'undefined') {
   const Mytoken =  localStorage.getItem('authtoken') ;
-  console.log(Mytoken);
   if (!Mytoken) {
     // Token does not exist
     return false;

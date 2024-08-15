@@ -33,6 +33,15 @@ export class EmployeemanagementComponent {
          });
          this.navigationStateService.setEmpAdded(false); // Reset state
        }
+       if (this.navigationStateService.isEmpUpdated()) {
+        console.log('here')
+         this.snackBar.open('Employee updated successfully!', 'Close', {
+           duration: 3000,
+           verticalPosition: 'top',
+           panelClass: ['success-snackbar']
+         });
+         this.navigationStateService.setEmpUpdated(false); // Reset state
+       }
 
   }
 
@@ -85,6 +94,12 @@ export class EmployeemanagementComponent {
       data: employee,
       panelClass: 'custom-dialog-container', // Add custom class here
     });
+  }
+
+  navigateToUpdate(employee: EmployeeModel) {
+    
+    this.navigationStateService.setEmployeeToUpdate(employee);
+    this.router.navigate(['/EmployeeUpdate']);
   }
 
 }

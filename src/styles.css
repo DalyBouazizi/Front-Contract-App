@@ -7,7 +7,7 @@ body{
   
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     .mat-mdc-snack-bar-container {
         &.success-snackbar {
@@ -37,9 +37,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       }
    
       .custom-dialog-container {
-        max-width: 1100px !important; /* or any desired width */
+        max-width: 800px !important; /* or any desired width */
         width: 100% !important; /* To ensure it uses the max-width */
-        height: 68vh !important; /* Adjust height as needed */
-        background-color: transparent !important; /* Change to your preferred color */  
+        height: 100vh !important; /* Adjust height as needed */
+        background-color: rgb(193, 193, 192) !important; /* Change to your preferred color */
+        color: transparent !important; /* Change to your preferred color */
+        
+      
         
       }
+::ng-deep.mat-mdc-dialog-component-host{
+  height: 100% !important;
+}
+   

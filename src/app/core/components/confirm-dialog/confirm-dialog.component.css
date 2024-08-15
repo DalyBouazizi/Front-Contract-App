@@ -21,6 +21,7 @@
   .custom-dialog-actions {
     display: flex;
     justify-content: flex-end;
+    overflow: hidden !important;
   }
   
   .custom-dialog-actions button {
@@ -29,7 +30,7 @@
 background-color: #7191E6;
 color: beige;
 padding: 10px 20px; /* Increase padding for a larger button */
-border: none !important;
+
   }
 
     .custom-dialog-actions button:hover{

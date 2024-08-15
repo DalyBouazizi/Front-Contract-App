@@ -1,7 +1,8 @@
 .dialog-content {
     display: flex;
     flex-direction: column;
-    
+    height: 100%; /* Make the dialog content take 100% height */
+
   }
   p{
 
@@ -11,9 +12,9 @@
   .dialog-content ,.dialog-actions{
     background-color: #EFE7F7 !important;
     color: black;
+   
 
   }
-
 
   .first-section {
    text-align: center;
