@@ -17,6 +17,9 @@ export class EmployeeService {
  getEmployees(): Observable<EmployeeModel[]> {
    return this.http.get<EmployeeModel[]>(`${this.apiUrl}Employee/GetAllEmployees`);
  }
+//  GetEmployeesByPoste(poste : string): Observable<EmployeeModel[]> {
+//    return this.http.get<EmployeeModel[]>(`${this.apiUrl}Employee/GetEmployeesByPoste?role=${poste}`);
+//  }
  checkEmployeeExists(id: number): Observable<EmployeeModel> {
    const url = `${this.apiUrl}Employee/GetEmpployeeById?IdEmployee=${id}`;
    return this.http.get<EmployeeModel>(url);

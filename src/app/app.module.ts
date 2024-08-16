@@ -21,6 +21,10 @@ import { EmployeeaddformComponent } from './core/components/employeeaddform/empl
 import { EmployeeDetailDialogComponent } from './core/components/employee-detail-dialog/employee-detail-dialog.component';
 import { EmployeeupdateformComponent } from './core/components/employeeupdateform/employeeupdateform.component';
 import { DatePipe } from '@angular/common';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    DataTablesModule
   ],
   providers: [
     DatePipe,

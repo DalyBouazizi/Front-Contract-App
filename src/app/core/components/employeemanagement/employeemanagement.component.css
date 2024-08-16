@@ -40,5 +40,110 @@
    .add-user-container a:hover{
       background-color: #ACBBDA !important;
       color: white;
-    }  
- 
+    }
+    
+    .parent-container {
+      display: flex;
+      flex-direction: column; /* Ensure items are stacked vertically */
+      align-items: center; /* Center items horizontally */
+      justify-content: center; 
+    }
+    .table {
+      width: 100%;
+      border-radius: 10px !important;
+      overflow: hidden;
+       border-spacing: 0; /* Remove spacing between cells */
+      border-radius: 18px;
+      --bs-table-bg: aliceblue;
+    
+  
+    }
+    .table td {
+      line-height: 1; /* Adjust line height as needed */
+      padding: 5px; /* Adjust padding to control spacing */
+  }.table td {
+      line-height: 1.2; /* Adjust line height as needed */
+      padding: 5px; /* Adjust padding to control spacing */
+  }
+    .table-container{
+      margin-top: 5px;
+      margin-bottom: 10px;
+      width: 90%;  
+    }
+    .add-user-container {
+      width: 90%;
+    
+      
+    }
+   
+    .add-user-container a{
+      background-color: rgba(52, 125, 167, 0.7) !important;
+      color: white;
+      padding: 15px 15px;
+    }
+     .add-user-container a:hover{
+        background-color: #ACBBDA !important;
+        color: white;
+      }  
+    .add-user-container .btn2{
+      background-color: rgba(96, 30, 61, 0.7) !important;
+      color: white;
+      padding: 15px 15px;
+    }
+     .add-user-container .btn2:hover{
+        background-color: #ACBBDA !important;
+        color: white;
+      }  
+   
+      .SortSettingcontainer {
+        background-color: rgba(255, 255, 255, 0.3); /* Set background color to blue */
+        padding: 0px; /* Add padding for spacing */
+        display: flex;
+        justify-content:space-around; /* Distribute space between items */
+        align-items: center; /* Align items vertically */
+        width: 90%;
+        border: 2px solid #000000; /* Add border around container */
+        margin-top: 5px;
+        border-radius: 10px;
+    }
+    .SortSettingcontainer .title{
+      width: 200px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 5px;
+    }
+    .SortSettingcontainer .title h2{
+     margin: 0px;
+     font-weight: bolder;
+    }
+    
+    .SortSettingcontainer select {
+        margin-right: 0px; /* Add margin between dropdowns */
+    }
+    
+    .SortSettingcontainer button {
+        background-color: #349DA7; /* Button background color */
+        color: white; /* Button text color */
+        padding: 7px 11px; /* Button padding */
+        border: none; /* Remove button border */
+        border-radius: 5px; /* Button border radius */
+    }
+    
+    .SortSettingcontainer button:hover {
+        background-color: #ACBBDA; /* Button hover background color */
+    }
+   .form-select{
+    width: 150px !important;
+   }
+   .icon{
+    margin-top: -3px;
+   }
+   
+   .queryelements{
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+   }

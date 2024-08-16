@@ -1,18 +1,64 @@
 <div class="parent-container">
-
-
-    <div class="table-container">
-       
-        <div class="add-user-container">
-        <a class="btn float-end m-2" [routerLink]="['/EmployeeADD']">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 24 24">
-                <path  d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M15,13h-2v2c0,0.552-0.448,1-1,1h0 c-0.552,0-1-0.448-1-1v-2H9c-0.552,0-1-0.448-1-1v0c0-0.552,0.448-1,1-1h2V9c0-0.552,0.448-1,1-1h0c0.552,0,1,0.448,1,1v2h2 c0.552,0,1,0.448,1,1v0C16,12.552,15.552,13,15,13z"></path>
-            </svg>
-            Add Employee</a>
-        </div>
-       
     
-        <table class="table  table-striped table-bordered mt-4" *ngIf="emps && emps.length >= 1; else nodatafound">
+       
+    <div class="SortSettingcontainer">
+        <div class="title"> 
+            <h2>Filters</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
+                <path d="M 4 2 C 3.398438 2 3 2.398438 3 3 L 3 6 C 3 6.300781 3.113281 6.488281 3.3125 6.6875 L 19.3125 23.6875 C 19.511719 23.886719 19.800781 24 20 24 L 30 24 C 30.300781 24 30.488281 23.886719 30.6875 23.6875 L 46.6875 6.6875 C 46.886719 6.488281 47 6.300781 47 6 L 47 3 C 47 2.398438 46.601563 2 46 2 Z M 19 26 L 19 41 C 19 41.398438 19.199219 41.707031 19.5 41.90625 L 29.5 47.90625 C 29.601563 48.007813 29.800781 48 30 48 C 30.199219 48 30.300781 48.007813 30.5 47.90625 C 30.800781 47.707031 31 47.398438 31 47 L 31 26 Z"></path>
+                </svg>
+            
+        </div>
+       <div class="queryelements">
+        
+        <select  name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste"  >
+            <option value="" disabled selected>Position</option>
+            <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+        </select>
+        <select  name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste" >
+            <option value="" disabled selected>Categorie</option>
+            <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+        </select>
+        <select  name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste" >
+            <option value="" disabled selected>Salary</option>
+            <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+        </select>
+        <select  name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste" >
+            <option value="" disabled selected>Age</option>
+            <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+        </select>
+        <select  name="poste" class="form-select" id="inputGroupSelect03" aria-label="Poste" >
+            <option value="" disabled selected>Choose a position...</option>
+            <option *ngFor="let position of jobPositions" [value]="position">{{ position }}</option>
+        </select>
+       
+        
+    </div>
+                <div class="add-user-container">
+                    <a class="btn float-end m-2 btn2" > 
+                        <svg class="icon "xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 72 72">
+                            <path d="M50,61c-0.731,0-1.464-0.2-2.112-0.604L36,53.004l-11.888,7.393c-1.356,0.847-3.088,0.799-4.401-0.116	c-1.312-0.916-1.952-2.524-1.628-4.091l2.923-14.118l-10.631-9.246c-1.203-1.047-1.67-2.708-1.188-4.228	c0.481-1.52,1.819-2.608,3.406-2.771l14.115-1.442L32.33,11.41C32.964,9.947,34.405,9,36,9s3.036,0.947,3.67,2.41l5.621,12.975	l14.115,1.442c1.587,0.162,2.925,1.251,3.406,2.771c0.482,1.52,0.016,3.181-1.188,4.228l-10.631,9.246l2.923,14.118	c0.324,1.566-0.316,3.175-1.628,4.091C51.604,60.759,50.802,61,50,61z"></path>
+                            </svg>
+                            Saved filters</a>
+
+                    <a class="btn float-end m-2 " [routerLink]="['/EmployeeADD']">
+                        <svg class="icon " xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 24 24">
+                            <path  d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M15,13h-2v2c0,0.552-0.448,1-1,1h0 c-0.552,0-1-0.448-1-1v-2H9c-0.552,0-1-0.448-1-1v0c0-0.552,0.448-1,1-1h2V9c0-0.552,0.448-1,1-1h0c0.552,0,1,0.448,1,1v2h2 c0.552,0,1,0.448,1,1v0C16,12.552,15.552,13,15,13z"></path>
+                        </svg>
+                        Add Employee</a>
+
+                        
+                    </div>
+
+
+    </div>
+    <div class="table-container">
+        
+       
+       
+        
+    
+        <table datatable [dtOptions]="dtOptions"   class="table  table-striped table-bordered mt-4" *ngIf="emps && emps.length >= 1; else nodatafound">
             <thead>
                 <tr>
                     <th>Registration Number</th>
