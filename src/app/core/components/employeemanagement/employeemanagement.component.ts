@@ -17,12 +17,30 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrl: './employeemanagement.component.css'
 })
 export class EmployeemanagementComponent {
+
   emps: EmployeeModel[] = [];
   dtOptions: Config = {};
 
-  @ViewChild(DataTableDirective, {static: false})
-  dtElement!: DataTableDirective;
+  selectedPositions: string[] = [];
   jobPositions: string[] = ['Developer', 'Designer', 'Manager', 'Analyst']; // Job positions for dropdown
+  selectedCategory: string[] = [];
+  Category: string[] = ['Administration', 'Finance', 'HR', 'Marketing']; // Job positions for dropdown
+  selectedSalary: string[] = [];
+  Salary: string[] = ['>=5000', '<=1000', '>=2500', '<=2500']; // Job positions for dropdown
+  selectedAge: string[] = [];
+  Age: string[] = ['>=30', '<25 ET >20', '<30 ET <25', '<20 ET >18']; // Job positions for dropdown
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    allowSearchFilter:false,
+    itemsShowLimit: 1,
+  };
+
+
+
   dtTrigger:Subject<any> = new Subject<any>();
   
   constructor(private employeeservice: EmployeeService, private router: Router,public dialog: MatDialog,
@@ -76,21 +94,7 @@ export class EmployeemanagementComponent {
 
   }
 
-  ngAfterViewInit(): void {
-    this.dtTrigger.next(0);
-  }
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
-  }
-  rerender(): void {
-    this.dtElement.dtInstance.then(dtInstance => {
-      // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next(0);
-    });
-  }
+  
 
     fetchEmployees(){
       this.employeeservice.getEmployees().subscribe(

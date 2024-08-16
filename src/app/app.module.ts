@@ -25,6 +25,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataTablesModule } from "angular-datatables";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DataTablesModule } from "angular-datatables";
     MatOptionModule,
     MatSelectModule,
     MatFormFieldModule,
-    DataTablesModule
+    DataTablesModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     DatePipe,
