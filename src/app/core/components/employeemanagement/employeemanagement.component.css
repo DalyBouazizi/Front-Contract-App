@@ -152,4 +152,36 @@
     .queryelements ng-multiselect-dropdown{
       width: 120px !important;
     }
+ 
+    /* Hide the increase/decrease arrows in input[type=number] for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide the increase/decrease arrows in input[type=number] for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+.inputs  {
   
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  gap: 6px;
+}
+    .inputs .form-control{
+      width: 80px !important;
+    }
+    .inputs .form-control::placeholder {
+      font-size: 0.9em; /* Adjust the size as needed */
+      color: #999; /* Optional: Change the color of the placeholder text */
+  }
+  .vertical-line {
+    border-left: 2px solid #999; /* Adjust color as needed */
+    height: 50px; /* Adjust height as needed */
+    margin: 0 10px; /* Adjust margin as needed */
+    display: inline-block;
+    vertical-align: middle;
+  }

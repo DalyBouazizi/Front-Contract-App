@@ -10,6 +10,10 @@ import { EmployeeDetailDialogComponent } from '../employee-detail-dialog/employe
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { FilterCriteria } from '../../models/filterCriteriaModel.model';
+import { HttpParams } from '@angular/common/http';
+import * as DataTables from 'datatables.net';
+
 
 @Component({
   selector: 'app-employeemanagement',
@@ -19,16 +23,19 @@ import { DataTableDirective } from 'angular-datatables';
 export class EmployeemanagementComponent {
 
   emps: EmployeeModel[] = [];
+  filter: FilterCriteria = new FilterCriteria();
   dtOptions: Config = {};
+  @ViewChild(DataTableDirective, {static: false})
+dtElement!: DataTableDirective;
 
   selectedPositions: string[] = [];
-  jobPositions: string[] = ['Developer', 'Designer', 'Manager', 'Analyst']; // Job positions for dropdown
+  jobPositions: string[] = ['HR Assistant', 'HR Manager', '	IT Administrator', 'Analyst']; // Job positions for dropdown
   selectedCategory: string[] = [];
   Category: string[] = ['Administration', 'Finance', 'HR', 'Marketing']; // Job positions for dropdown
-  selectedSalary: string[] = [];
-  Salary: string[] = ['>=5000', '<=1000', '>=2500', '<=2500']; // Job positions for dropdown
-  selectedAge: string[] = [];
-  Age: string[] = ['>=30', '<25 ET >20', '<30 ET <25', '<20 ET >18']; // Job positions for dropdown
+   minAge: number | undefined;
+  maxAge: number | undefined;
+  minSalary: number | undefined;
+  maxSalary: number | undefined;
   dropdownSettings = {
     singleSelection: false,
     idField: 'item_id',
@@ -36,7 +43,7 @@ export class EmployeemanagementComponent {
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     allowSearchFilter:false,
-    itemsShowLimit: 1,
+    itemsShowLimit: 0,
   };
 
 
@@ -46,14 +53,30 @@ export class EmployeemanagementComponent {
   constructor(private employeeservice: EmployeeService, private router: Router,public dialog: MatDialog,
     private snackBar: MatSnackBar, private navigationStateService: NavigationStateServiceService,) { }
   ngOnInit(): void {
+    $.fn.dataTable.ext.errMode = 'none';
+
+    this.fetchEmployees(); 
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.dtOptions = {
-
+      
       pagingType: 'full_numbers',
       pageLength: 15, // Set the default number of entries per page
       lengthMenu: [5, 10, 25, 50], // Provide options for users to select the number of entries per page
       // Additional DataTables options here
+      columns: [
+        { data: 'matricule' },
+        { data: 'cin' },
+        { data: 'nom' },
+        { data: 'prenom' },
+        { data: 'poste' },
+        { data: 'categoriePro' },
+        { data: 'salaireb' },
+        { data: 'actions' },
+      
+       
+        
+        ],
 
       language: {
         lengthMenu: '_MENU_ : Numbers of Employees per page  ',
@@ -64,14 +87,6 @@ export class EmployeemanagementComponent {
       
     };
   
-
-
-    
-
-    
-
-
-   this.fetchEmployees(); 
 
        if (this.navigationStateService.isEmpAdded()) {
         console.log('here')
@@ -94,13 +109,67 @@ export class EmployeemanagementComponent {
 
   }
 
+  resetFilters() {
+    this.minAge = undefined;
+    this.maxAge = undefined;
+    this.minSalary = undefined;
+    this.maxSalary = undefined;
+    this.selectedPositions = [];
+    this.selectedCategory = [];
+    this.applyFilters();
+  }
+  
+
+  applyFilters() {
+    
+    this.filter.positions = this.selectedPositions;
+    this.filter.categories = this.selectedCategory;
+      this.filter.minAge= this.minAge;
+      this.filter.maxAge= this.maxAge;
+      this.filter.minSalary=this.minSalary;
+      this.filter.maxSalary=this.maxSalary;
+    console.log('Filter criteria:', this.filter);
+    let queryParams = [];
+
+    if (this.filter.positions && this.filter.positions.length > 0) {
+        queryParams.push(`Positions=${this.filter.positions.join(',')}`);
+    }
+    if (this.filter.categories && this.filter.categories.length > 0) {
+        queryParams.push(`Categories=${this.filter.categories.join(',')}`);
+    }
+    if (this.filter.minSalary !== null && this.filter.minSalary !== undefined) {
+        queryParams.push(`MinSalary=${this.filter.minSalary}`);
+    }
+    if (this.filter.maxSalary !== null && this.filter.maxSalary !== undefined) {
+        queryParams.push(`MaxSalary=${this.filter.maxSalary}`);
+    }
+    if (this.filter.minAge !== null && this.filter.minAge !== undefined) {
+        queryParams.push(`MinAge=${this.filter.minAge}`);
+    }
+    if (this.filter.maxAge !== null && this.filter.maxAge !== undefined) {
+        queryParams.push(`MaxAge=${this.filter.maxAge}`);
+    }
+
+    const queryString = queryParams.join('&');
+// Use HttpParams to handle query parameters
+    let params = new HttpParams();
+    queryParams.forEach(param => {
+        const [key, value] = param.split('=');
+        params = params.append(key, value);
+});
+    console.log('queryString', queryString);
+    console.log('params', params);
+    this.fetchFilteredEmployees(params);
+
+    };
+
   
 
     fetchEmployees(){
       this.employeeservice.getEmployees().subscribe(
         (data) => {
           this.emps = data;
-          this.dtTrigger.next(0);
+         
         },
         (error) => {
           console.error('Error fetching employees', error);
@@ -135,6 +204,7 @@ export class EmployeemanagementComponent {
       data: employee,
       panelClass: 'custom-dialog-container', // Add custom class here
     });
+   
   }
 
   navigateToUpdate(employee: EmployeeModel) {
@@ -144,8 +214,21 @@ export class EmployeemanagementComponent {
   }
 
 
-
-
-  
-
+   fetchFilteredEmployees(filterCriteria: any) {
+    this.employeeservice.fetchFilteredEmployees(filterCriteria).subscribe({
+      next: (data) => {
+        this.emps = data;
+        console.log('Filtered employees:', this.emps);
+        // Reset and rerender the DataTable
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.clear(); // Clear the table
+          dtInstance.rows.add(this.emps); // Add the filtered data
+          dtInstance.draw(); // Redraw the table
+        });
+      },
+      error: (error) => {
+        this.emps = [];
+      }
+    });
+  }
 }

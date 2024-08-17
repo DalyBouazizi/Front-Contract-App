@@ -36,5 +36,9 @@ export class EmployeeService {
    return this.http.post<string>(`${this.apiUrl}Employee/AddEmployee`, employee , { responseType: 'text' as 'json' })   }
  UpdateEmployee(employee : EmployeeModel ) : Observable<string> {
    return this.http.put<string>(`${this.apiUrl}Employee/Updateemployee`, employee , { responseType: 'text' as 'json' })   }
+
+  fetchFilteredEmployees(filterCriteria: any): Observable<EmployeeModel[]> {
+    return this.http.get<EmployeeModel[]>(`${this.apiUrl}Employee/filter`, { params: filterCriteria });
+  }
 }
   
