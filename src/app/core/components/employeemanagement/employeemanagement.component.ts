@@ -13,6 +13,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { FilterCriteria } from '../../models/filterCriteriaModel.model';
 import { HttpParams } from '@angular/common/http';
 import * as DataTables from 'datatables.net';
+import * as XLSX from 'xlsx'; // Import xlsx library
 
 
 @Component({
@@ -25,6 +26,7 @@ export class EmployeemanagementComponent {
   emps: EmployeeModel[] = [];
   filter: FilterCriteria = new FilterCriteria();
   dtOptions: Config = {};
+
   @ViewChild(DataTableDirective, {static: false})
 dtElement!: DataTableDirective;
 
@@ -61,9 +63,9 @@ dtElement!: DataTableDirective;
     this.dtOptions = {
       
       pagingType: 'full_numbers',
-      pageLength: 15, // Set the default number of entries per page
+      pageLength: 10, // Set the default number of entries per page
       lengthMenu: [5, 10, 25, 50], // Provide options for users to select the number of entries per page
-      // Additional DataTables options here
+      // scrollY: '400',
       columns: [
         { data: 'matricule' },
         { data: 'cin' },
@@ -72,10 +74,8 @@ dtElement!: DataTableDirective;
         { data: 'poste' },
         { data: 'categoriePro' },
         { data: 'salaireb' },
-        { data: 'actions' },
-      
-       
-        
+        {},
+     
         ],
 
       language: {
@@ -108,6 +108,74 @@ dtElement!: DataTableDirective;
        }
 
   }
+// import export --------------------
+
+  exportToExcel(): void {
+    // Create a new workbook and add a worksheet
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.emps);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Employees');
+
+    // Save the workbook to a file
+    XLSX.writeFile(wb, 'employees.xlsx');
+  }
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click(); // Trigger file input click
+    }
+  }
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.onload = (e: any) => {
+        const binaryString = e.target.result;
+        const workbook = XLSX.read(binaryString, { type: 'binary' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }); // Read sheet as JSON
+
+        // Assuming data is an array of arrays and you want to convert it to a suitable format
+        const employees: EmployeeModel[] = data.slice(1).map((row: any) => {
+          return {
+            matricule: row[0],
+            nom: row[1],
+            prenom: row[2],
+            poste: row[3],
+            adresse: row[4],
+            dateNaissance: row[5],
+            lieuNaissance: row[6],
+            cin: row[7],
+            dateCin: row[8],
+            categoriePro: row[9],
+            salaireb: row[10],
+            salairen: row[11],
+          };
+        });
+        console.log('Employees:', employees);
+        // Send data to your API
+        this.employeeservice.addListEmployee(employees)
+          .subscribe({
+            next: (response) => {
+              console.log('Employees added successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error adding employees:', error);
+            }
+          });
+      };
+      
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  // Function to convert the data array to your EmployeeModel
+  
+//--------------------
 
   resetFilters() {
     this.minAge = undefined;
@@ -192,6 +260,12 @@ dtElement!: DataTableDirective;
 
                   this.router.navigate(['/EmployeeCP']);
                   this.fetchEmployees();
+                  this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+                    dtInstance.clear(); // Clear the table
+                    dtInstance.rows.add(this.emps); // Add the filtered data
+          
+                    dtInstance.draw(); // Redraw the table
+                  });
           
                 },
               error: (error) => {
@@ -218,13 +292,19 @@ dtElement!: DataTableDirective;
     this.employeeservice.fetchFilteredEmployees(filterCriteria).subscribe({
       next: (data) => {
         this.emps = data;
+        
         console.log('Filtered employees:', this.emps);
-        // Reset and rerender the DataTable
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           dtInstance.clear(); // Clear the table
           dtInstance.rows.add(this.emps); // Add the filtered data
+
+
+          
           dtInstance.draw(); // Redraw the table
         });
+
+       
+
       },
       error: (error) => {
         this.emps = [];

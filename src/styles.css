@@ -60,3 +60,8 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
    .dropdown-list[_ngcontent-ng-c692748064]{
     width: 200px !important;  
   }
+
+  .dt-column-order, ::before ,::after{
+    padding: 1px !important;
+    
+  }

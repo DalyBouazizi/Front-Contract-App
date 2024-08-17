@@ -16,15 +16,23 @@
   }
   .table td {
     line-height: 1; /* Adjust line height as needed */
-    padding: 5px; /* Adjust padding to control spacing */
-}.table td {
+    padding: 10px; /* Adjust padding to control spacing */
+}
+  .table th {
+    line-height: 2.5; /* Adjust line height as needed */
+    
+    background-color: rgba(52, 157, 167,0.22) !important;
+}
+
+
+.table td {
     line-height: 1.2; /* Adjust line height as needed */
     padding: 5px; /* Adjust padding to control spacing */
 }
   .table-container{
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 10px;
-    width: 90%;  
+    width: 94% !important;  
   }
   .add-user-container {
     width: 100%;
@@ -71,7 +79,7 @@
       width: 90%;  
     }
     .add-user-container {
-      width: 20%;
+      width: 29%;
     
       
     }
@@ -88,7 +96,12 @@
     .add-user-container .btn2{
       background-color: rgba(96, 30, 61, 0.7) !important;
       color: white;
-      padding: 15px 15px;
+      padding: 7px 11px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 12px 3px !important;
+     
     }
      .add-user-container .btn2:hover{
         background-color: #ACBBDA !important;
@@ -141,7 +154,7 @@
    }
    
    .queryelements{
-    width: 100%;
+    width: 50%;
     margin-left: 15px;
     display: flex;
     justify-content: flex-start;
@@ -184,4 +197,9 @@ input[type="number"] {
     margin: 0 10px; /* Adjust margin as needed */
     display: inline-block;
     vertical-align: middle;
+  }
+
+
+  .Import{
+
   }
