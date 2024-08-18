@@ -1,3 +1,4 @@
+
 .parent-container {
     display: flex;
     flex-direction: column; /* Ensure items are stacked vertically */
@@ -79,7 +80,7 @@
       width: 90%;  
     }
     .add-user-container {
-      width: 29%;
+      width: 30%;
     
       
     }
@@ -107,6 +108,10 @@
         background-color: #ACBBDA !important;
         color: white;
       }  
+
+      .btn2 svg{
+       margin-right: 2px;
+      }
    
       .SortSettingcontainer {
         background-color: rgba(255, 255, 255, 0.3); /* Set background color to blue */
