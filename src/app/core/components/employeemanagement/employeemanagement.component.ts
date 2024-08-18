@@ -139,6 +139,8 @@ dtElement!: DataTableDirective;
         const sheet = workbook.Sheets[sheetName];
         const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }); // Read sheet as JSON
 
+        
+
         // Assuming data is an array of arrays and you want to convert it to a suitable format
         const employees: EmployeeModel[] = data.slice(1).map((row: any) => {
           return {
@@ -149,7 +151,7 @@ dtElement!: DataTableDirective;
             adresse: row[4],
             dateNaissance: row[5],
             lieuNaissance: row[6],
-            cin: row[7],
+            cin: String(row[7]),
             dateCin: row[8],
             categoriePro: row[9],
             salaireb: row[10],
@@ -157,14 +159,33 @@ dtElement!: DataTableDirective;
           };
         });
         console.log('Employees:', employees);
+
+        // Convert the array to a JSON string
+      // const payload = JSON.stringify(employees);
         // Send data to your API
         this.employeeservice.addListEmployee(employees)
           .subscribe({
             next: (response) => {
-              console.log('Employees added successfully:', response);
+              console.log( response);
+                // Display snackbar with the response message
+            this.snackBar.open(response, 'Close', {
+              duration: 6000,
+              verticalPosition: 'top',
+              panelClass: ['success-snackbar']
+            });
+
+            // Refresh the data table
+            this.fetchEmployees();
+
+            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+              dtInstance.clear(); // Clear the table
+              dtInstance.rows.add(this.emps); // Add the filtered data
+    
+              dtInstance.draw(); // Redraw the table
+            });
             },
             error: (error) => {
-              console.error('Error adding employees:', error);
+              console.error( error);
             }
           });
       };
@@ -260,6 +281,7 @@ dtElement!: DataTableDirective;
 
                   this.router.navigate(['/EmployeeCP']);
                   this.fetchEmployees();
+                  
                   this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
                     dtInstance.clear(); // Clear the table
                     dtInstance.rows.add(this.emps); // Add the filtered data

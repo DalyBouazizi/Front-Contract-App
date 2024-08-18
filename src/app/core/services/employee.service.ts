@@ -35,10 +35,11 @@ export class EmployeeService {
  addUser(employee : EmployeeModel ) : Observable<string> {
    return this.http.post<string>(`${this.apiUrl}Employee/AddEmployee`, employee , { responseType: 'text' as 'json' })   }
 
-   addListEmployee(employees : EmployeeModel[] ) : Observable<string> {
-    console.log(employees);
-    console.log(`${this.apiUrl}Employee/AddListEmployee`, employees);
-    return this.http.post<string>(`${this.apiUrl}Employee/AddListEmployee`, employees , { responseType: 'text' as 'json' })   }
+   addListEmployee(payload : EmployeeModel[] ) : Observable<string> {
+    console.log(payload);
+    console.log(`${this.apiUrl}Employee/AddListEmployee`, payload);
+    
+    return this.http.post<string>(`${this.apiUrl}Employee/AddListEmployees`, payload, { responseType: 'text' as 'json' })   }
 
  UpdateEmployee(employee : EmployeeModel ) : Observable<string> {
    return this.http.put<string>(`${this.apiUrl}Employee/Updateemployee`, employee , { responseType: 'text' as 'json' })   }
