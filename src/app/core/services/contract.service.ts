@@ -16,4 +16,7 @@ export class ContractService {
   getContracts(): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetAllContracts`);
   }
+  GetContractByEmployeeId(id : number): Observable<ContractsModel[]> {
+    return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractByEmployeeId?EmployeeId=${id}`);
+  }
 }

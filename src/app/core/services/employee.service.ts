@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { EmployeeModel } from '../models/EmployeeModel.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { EmployeeGetModel } from '../models/EmployeeGetModel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class EmployeeService {
  checkEmployeeExists(id: number): Observable<EmployeeModel> {
    const url = `${this.apiUrl}Employee/GetEmpployeeById?IdEmployee=${id}`;
    return this.http.get<EmployeeModel>(url);
+ }
+ checkEmployeeExistsID(id: number): Observable<EmployeeGetModel> {
+   const url = `${this.apiUrl}Employee/GetEmpployeeById?IdEmployee=${id}`;
+   return this.http.get<EmployeeGetModel>(url);
  }
  getemployeebyrealid(id: number): Observable<EmployeeModel> {
    const url = `${this.apiUrl}Employee/GetEmpployeeByRealId?IdEmployee=${id}`;

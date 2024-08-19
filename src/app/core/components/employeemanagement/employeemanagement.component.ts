@@ -259,11 +259,6 @@ dtElement!: DataTableDirective;
       this.employeeservice.getEmployees().subscribe(
         (data) => {
           this.emps = data;
-          data.forEach(element => {
-            console.log('Employee:', element);
-            console.log('mat:', element.matricule);
-          });
-         
         },
         (error) => {
           console.error('Error fetching employees', error);

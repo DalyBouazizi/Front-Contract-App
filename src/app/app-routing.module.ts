@@ -10,6 +10,7 @@ import { EmployeeaddformComponent } from './core/components/employeeaddform/empl
 import { EmployeemanagementComponent } from './core/components/employeemanagement/employeemanagement.component';
 import { EmployeeupdateformComponent } from './core/components/employeeupdateform/employeeupdateform.component';
 import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
+import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,12 @@ const routes: Routes = [
   {
     path: 'ContractsManagement',
     component: ContractsmanagementComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+  
+  {
+    path: 'ContractADD',
+    component: ContractaddformComponent,
     canActivate: [authGuard], // Apply guard (if needed)
   },
   {
