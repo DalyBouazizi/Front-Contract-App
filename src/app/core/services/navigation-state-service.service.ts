@@ -10,6 +10,7 @@ export class NavigationStateServiceService {
   constructor() { }
   private addedUser: boolean = false;
   private addedEmp: boolean = false;
+  private addedCont: boolean = false
   private UpdatedEmp: boolean = false;
   private employeeToUpdate: EmployeeModel = {  nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: '' };
 
@@ -24,6 +25,12 @@ export class NavigationStateServiceService {
 
   isEmpAdded(): boolean {
     return this.addedEmp;}
+
+  setContAdded(state: boolean) {
+    this.addedCont = state;}
+
+  isContAdded(): boolean {
+    return this.addedCont;}
 
   setEmpUpdated(state: boolean) {
     this.UpdatedEmp = state;}

@@ -3,6 +3,8 @@ import { ContractService } from '../../services/contract.service';
 import { ContractsModel } from '../../models/ContractsModel.model';
 import { EmployeeModel } from '../../models/EmployeeModel.model';
 import { EmployeeService } from '../../services/employee.service';
+import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-contractsmanagement',
   templateUrl: './contractsmanagement.component.html',
@@ -11,7 +13,8 @@ import { EmployeeService } from '../../services/employee.service';
 export class ContractsmanagementComponent {
 
   constructor(
-    private contractService: ContractService, private employeeService: EmployeeService
+    private contractService: ContractService, private employeeService: EmployeeService, private navigationStateService: NavigationStateServiceService,
+    private snackBar: MatSnackBar,
   ) { }
 
   Contracts : ContractsModel[] = []; 
@@ -25,6 +28,15 @@ export class ContractsmanagementComponent {
     //Add 'implements OnInit' to the class.
     
     this.fetchContracts();
+    if (this.navigationStateService.isEmpAdded()) {
+      console.log('here')
+       this.snackBar.open('Employee added successfully!', 'Close', {
+         duration: 3000,
+         verticalPosition: 'top',
+         panelClass: ['success-snackbar']
+       });
+       this.navigationStateService.setEmpAdded(false); // Reset state
+     }
   }
 
  

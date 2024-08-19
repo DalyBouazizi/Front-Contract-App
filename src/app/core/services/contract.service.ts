@@ -19,4 +19,7 @@ export class ContractService {
   GetContractByEmployeeId(id : number): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractByEmployeeId?EmployeeId=${id}`);
   }
+
+  addContract(contract : ContractsModel ) : Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}AddContract`, contract , { responseType: 'text' as 'json' })   }
 }

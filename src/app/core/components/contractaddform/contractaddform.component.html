@@ -4,7 +4,7 @@
     <div class="formcontainer">
         
       
-        <form   >
+        <form (submit)="onFormSubmit()"   >
         <!-- <form  (ngSubmit)="onFormSubmit()"  > -->
             <h2 style="text-align: center;">Add Contract</h2>
             <div class="alertgroup">
@@ -19,15 +19,15 @@
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
                 <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
                 </svg>
-                Has Contract</div>
+                Employee Has Contract</div>
                 
-                <!-- <div *ngIf="CinExists === true " style="color: rgb(182, 0, 0);"class="mb-2">
+                <div *ngIf="FormValid === false " style="color: rgb(182, 0, 0);"class="mb-2">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
                     <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
                     </svg>
-                    Employee's CIN exists already</div>
+                    Please fill all required inputs</div>
               
-                <div *ngIf="CinValid === false " style="color: rgb(182, 0, 0);"class="mb-2">
+                <!-- <div *ngIf="CinValid === false " style="color: rgb(182, 0, 0);"class="mb-2">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 72 72">
                     <path d=" M36,12c13.255,0,24,10.745,24,24c0,13.255-10.745,24-24,24S12,49.255,12,36C12,22.745,22.745,12,36,12z M39,45	c0-0.901,0-6.099,0-7c0-1.657-1.343-3-3-3c-1.657,0-3,1.343-3,3c0,0.901,0,6.099,0,7c0,1.657,1.343,3,3,3C37.657,48,39,46.657,39,45	z M36,32c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C32,30.209,33.791,32,36,32z"></path>
                     </svg>
@@ -39,70 +39,75 @@
                     <label for="exampleInputMatricule" ><b>Registration number</b></label>
                    
                     <input  name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" id="RegistrationNumber" 
-                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)" >
-                    <!-- <input  [(ngModel)]="model.matricule" name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" id="RegistrationNumber" aria-describedby="MatriculeHelp" (keyup)="checkmatricule($event); FormValid = true"> -->
+                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)"  (keydown)="clearinput()" (blur)="CheckValidity($event)">
+                    <!-- <input  [(ngModel)]="model.matricule" name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" 
+                     id="RegistrationNumber" aria-describedby="MatriculeHelp" (keyup)="checkmatricule($event); FormValid = true"> -->
                     
                 </div>
                 <div class="form-group">
                     <label for="cin">CIN</label>
                   
-                    <input   type="text" class="form-control" type="number"id="cin" name="cin" placeholder="CIN"  disabled>
+                    <input   type="text" class="form-control" type="number"id="cin" name="cin" placeholder="--" [(ngModel)]="Employee.cin"  disabled>
                 </div>
                 <div class="form-group">
                     <label for="nom">Nom</label>
-                    <input   type="text" class="form-control" id="nom" name="nom" placeholder="Nom"  disabled>
+                    <input   type="text" class="form-control" id="nom" name="nom" placeholder="--"  [(ngModel)]="Employee.nom" disabled>
                 </div>
                 <div class="form-group">
                     <label for="prenom">Prenom</label>
-                    <input    type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom"disabled>
+                    <input    type="text" class="form-control" id="prenom" name="prenom" placeholder="--"  [(ngModel)]="Employee.prenom"disabled>
                 </div>
                 <div class="form-group">
                     <label for="poste">Poste</label>
-                    <input  type="text" class="form-control" id="poste" name="poste" placeholder="Poste" disabled>
+                    <input  type="text" class="form-control" id="poste" name="poste" placeholder="--"  [(ngModel)]="Employee.poste" disabled>
                 </div>
                 <div class="form-group">
                     <label for="adresse">Adresse</label>
-                    <input   type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" disabled>
+                    <input   type="text" class="form-control" id="adresse" name="adresse" placeholder="--"  [(ngModel)]="Employee.adresse" disabled>
                 </div>
                 <div class="form-group">
                     <label for="dateNaissance">Date de Naissance</label>
-                    <input  type="date" class="form-control" id="dateNaissance" name="dateNaissance" disabled>
+                    <input  type="date" class="form-control" id="dateNaissance" name="dateNaissance"  [(ngModel)]="formattedDateNaissance" disabled>
                 </div>
                 <div class="form-group">
                     <label for="lieuNaissance">Lieu de Naissance</label>
-                    <input type="text" class="form-control" id="lieuNaissance" name="lieuNaissance" placeholder="Lieu de Naissance" disabled>
+                    <input type="text" class="form-control" id="lieuNaissance" name="lieuNaissance" placeholder="--"  [(ngModel)]="Employee.lieuNaissance" disabled>
                 </div>
                
                 <div class="form-group">
                     <label for="dateCin">Date de CIN</label>
-                    <input   type="date" class="form-control" id="dateCin" name="dateCin" disabled >
+                    <input   type="date" class="form-control" id="dateCin" name="dateCin" [(ngModel)]="formattedDateCin" disabled >
                 </div>
                 <div class="form-group">
                     <label for="categoriePro">Categorie Professionelle</label>
-                    <input   type="text" class="form-control" id="categoriePro" name="categoriePro" placeholder="Categorie Professionelle"  disabled>
+                    <input   type="text" class="form-control" id="categoriePro" name="categoriePro" placeholder="--"  [(ngModel)]="Employee.categoriePro" disabled>
                 </div>
                 <div class="form-group">
                     <label for="salaireb">Salaire Brut</label>
-                    <input   type="number" class="form-control" id="salaireb" name="salaireb" placeholder="Salaire Brut" >
+                    <input   type="number" class="form-control" id="salaireb" name="salaireb" [(ngModel)]="Employee.salaireb" placeholder="Salaire Brut" (keydown)="FormValid = true" required>
                 </div>
                 <div class="form-group">
                     <label for="salairen">Salaire Net</label>
-                    <input  type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net">
+                    <input  type="number" class="form-control" id="salairen" name="salairen" [(ngModel)]="Employee.salairen"placeholder=" Salaire Net" (keydown)="FormValid = true" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select [(ngModel)]="Contract.type" name="type" class="form-select" id="inputGroupSelect03" aria-label="type" >
+                        <option value="" disabled selected>Choose a position...</option>
+                        <option *ngFor="let type of ContractTypes" [value]="type">{{ type }}</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="salairen"><b>Type</b></label>
-                    <input  type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net" required>
+                    <label for=">StartDate"><b>Start Date</b></label>
+                    <input  type="date" class="form-control" id=">StartDate" name=">StartDate"  [(ngModel)]="Contract.datedeb"  placeholder=">Start Date"(blur)="FormValid = true" required>
                 </div>
                 <div class="form-group">
-                    <label for="salairen"><b>Start Date</b></label>
-                    <input  type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net" required>
-                </div>
-                <div class="form-group">
-                    <label for="salairen"><b>End Date</b></label>
-                    <input  type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net" required>
+                    <label for=">EndDate"><b>End Date</b></label>
+                    <input  type="date" class="form-control" id="EndDate" name="EndDate" placeholder="End Date"  [(ngModel)]="Contract.dateFin"(blur)="FormValid = true"  required>
                 </div>
             </div>
-            <button type="submit" class="btn btnz mt-3">Submit</button>
+            <button type="submit" class="btn btnz mt-3" [disabled]="employeeExists === false || ContractExists === true "  >Submit</button>
         </form>
     </div>
 </div>

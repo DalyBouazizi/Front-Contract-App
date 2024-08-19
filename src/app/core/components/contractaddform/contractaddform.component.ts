@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { ContractService } from '../../services/contract.service';
 import { EmployeeService } from '../../services/employee.service';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
-import { exit } from 'process';
+import { DatePipe } from '@angular/common';
+import { ContractsModel } from '../../models/ContractsModel.model';
+import { Router } from '@angular/router';
+import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
 
 @Component({
   selector: 'app-contractaddform',
@@ -12,13 +15,18 @@ import { exit } from 'process';
 export class ContractaddformComponent {
 
   constructor(
-    private contractService: ContractService, private employeeService: EmployeeService
+    private contractService: ContractService, private employeeService: EmployeeService,
+    private datePipe: DatePipe,private router: Router, private navigationStateService: NavigationStateServiceService,
   ) { }
 
   employeeExists: boolean | null = null; // Status of employee existence check
  ContractExists: boolean | null = null; // Status of employee existence check
-
-
+ FormValid: boolean | null = null; // Status of form validity check
+ Employee : EmployeeGetModel = {id:0, nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: ''}; // Employee data
+ formattedDateNaissance = '';
+ formattedDateCin = '';
+Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
+ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdown
 
   CheckValidity(event: any): void {
     const id = event.target.value;
@@ -27,8 +35,13 @@ export class ContractaddformComponent {
    
       this.employeeService.checkEmployeeExistsID(Number(id)).subscribe({
         next: (response) => {
-          
+          this.Employee = response;
+          this.Employee.salaireb = undefined;
+          this.Employee.salairen = undefined;
           this.employeeExists = true; 
+            // Transform dates using DatePipe
+     this.formattedDateNaissance = this.datePipe.transform(this.Employee.dateNaissance, 'yyyy-MM-dd') || '';
+     this.formattedDateCin = this.datePipe.transform(this.Employee.dateCin, 'yyyy-MM-dd') || '';
         
           this.contractService.GetContractByEmployeeId(response.id).subscribe({
             next: (response) => {
@@ -56,5 +69,69 @@ export class ContractaddformComponent {
 
 }
 
+clearinput(){
+  this.Employee.nom = '';
+  this.Employee.prenom = '';
+  this.Employee.poste = '';
+  this.Employee.adresse = '';
+  this.Employee.dateNaissance = new Date();
+  this.Employee.lieuNaissance = '';
+  this.Employee.cin = '';
+  this.Employee.dateCin = new Date();
+  this.Employee.categoriePro = '';
+  this.Employee.salaireb = 0;
+  this.Employee.salairen = 0;
+
+
+}
+
+isFormValid(): boolean {
+  return this.Employee.salaireb !== null && 
+  this.Employee.salaireb !== undefined &&
+  this.Employee.salairen !== null &&
+  this.Employee.salairen !== undefined &&
+  this.Contract.type.trim() !== '' &&
+  this.Contract.datedeb !== null &&  
+  this.Contract.datedeb !== undefined &&
+  this.Contract.dateFin !== null &&  
+  this.Contract.dateFin !== undefined;
+}
+
+
+onFormSubmit(){
+  this.Employee.dateNaissance = new Date(this.formattedDateNaissance);
+  this.Employee.dateCin = new Date(this.formattedDateCin);
+  if (this.isFormValid()){
+  this.employeeService.UpdateEmployee(this.Employee)
+  .subscribe({
+    next: (response :string) => {
+     
+
+      this.Contract.employeeId = this.Employee.id;
+      this.contractService.addContract(this.Contract).subscribe({
+        next: (response) => {
+          console.log('Contract added successfully');
+           this.navigationStateService.setContAdded(true);
+      this.router.navigate(['/ContractsManagement'] , { state: { added: true } });
+        },
+        error: (error) => {
+          console.error('Error status from Contract:', error.status);  // Log HTTP status code
+          console.error('Error message:', error.message); // Log error message
+        }
+      });
+      // this.navigationStateService.setEmpAdded(true);
+      // this.router.navigate(['/EmployeeCP'] , { state: { added: true } });
+
+    },
+    error: (error) => {
+      console.error('Error status From Employee:', error.status);  // Log HTTP status code
+      console.error('Error message:', error.message); // Log error message
+    }
+  })
+  }else{
+    // Handle the case where the form is not valid
+    this.FormValid = false;
+}
+}
 
 }
