@@ -40,7 +40,7 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
         max-width: 800px !important; /* or any desired width */
         width: 100% !important; /* To ensure it uses the max-width */
         height: 75vh !important; /* Adjust height as needed */
-        background-color: rgb(193, 193, 192) !important; /* Change to your preferred color */
+        background-color: rgba(193, 193, 192, 0) !important; /* Change to your preferred color */
         color: transparent !important; /* Change to your preferred color */
         
       

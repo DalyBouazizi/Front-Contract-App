@@ -24,6 +24,10 @@ export class EmployeeService {
    const url = `${this.apiUrl}Employee/GetEmpployeeById?IdEmployee=${id}`;
    return this.http.get<EmployeeModel>(url);
  }
+ getemployeebyrealid(id: number): Observable<EmployeeModel> {
+   const url = `${this.apiUrl}Employee/GetEmpployeeByRealId?IdEmployee=${id}`;
+   return this.http.get<EmployeeModel>(url);
+ }
  checkCinEmployeeExists(Cin: number): Observable<EmployeeModel> {
   const url = `${this.apiUrl}Employee/GetEmpployeeByCin?Cin=${Cin}`;
   return this.http.get<EmployeeModel>(url);

@@ -14,6 +14,7 @@ import { FilterCriteria } from '../../models/filterCriteriaModel.model';
 import { HttpParams } from '@angular/common/http';
 import * as DataTables from 'datatables.net';
 import * as XLSX from 'xlsx'; // Import xlsx library
+import { cp } from 'fs';
 
 
 @Component({
@@ -258,6 +259,10 @@ dtElement!: DataTableDirective;
       this.employeeservice.getEmployees().subscribe(
         (data) => {
           this.emps = data;
+          data.forEach(element => {
+            console.log('Employee:', element);
+            console.log('mat:', element.matricule);
+          });
          
         },
         (error) => {

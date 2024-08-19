@@ -26,7 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataTablesModule } from "angular-datatables";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { MatSliderModule } from '@angular/material/slider'; // Import MatSliderModule
+import { MatSliderModule } from '@angular/material/slider';
+import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
+import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component'; // Import MatSliderModule
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { MatSliderModule } from '@angular/material/slider'; // Import MatSliderM
     EmployeemanagementComponent,
     EmployeeaddformComponent,
     EmployeeDetailDialogComponent,
-    EmployeeupdateformComponent
+    EmployeeupdateformComponent,
+    ContractsmanagementComponent,
+    ContractaddformComponent
   ],
   imports: [
     BrowserModule,
