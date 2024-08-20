@@ -6,6 +6,9 @@ import { DatePipe } from '@angular/common';
 import { ContractsModel } from '../../models/ContractsModel.model';
 import { Router } from '@angular/router';
 import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contractaddform',
@@ -16,7 +19,8 @@ export class ContractaddformComponent {
 
   constructor(
     private contractService: ContractService, private employeeService: EmployeeService,
-    private datePipe: DatePipe,private router: Router, private navigationStateService: NavigationStateServiceService,
+    private datePipe: DatePipe,private router: Router, private navigationStateService: NavigationStateServiceService,public dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) { }
 
   employeeExists: boolean | null = null; // Status of employee existence check
@@ -27,6 +31,7 @@ export class ContractaddformComponent {
  formattedDateCin = '';
 Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
 ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdown
+CombinedData: any = {};
 
   CheckValidity(event: any): void {
     const id = event.target.value;
@@ -45,9 +50,11 @@ ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdo
         
           this.contractService.GetContractByEmployeeId(response.id).subscribe({
             next: (response) => {
-              
+            this.CombinedData.employee =this.Employee
+            this.CombinedData.contract = response;
+            console.log(this.CombinedData);
                 this.ContractExists = true;
-                console.log(response);
+          
               
             },
             error: (error) => {
@@ -133,5 +140,10 @@ onFormSubmit(){
     this.FormValid = false;
 }
 }
+navigateToRenew() {
+  this.navigationStateService.setItemToRenew(this.CombinedData);
+  this.router.navigate(['/ContractRenew']);
+}
+
 
 }

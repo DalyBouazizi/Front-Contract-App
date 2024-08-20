@@ -28,7 +28,8 @@ import { DataTablesModule } from "angular-datatables";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSliderModule } from '@angular/material/slider';
 import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
-import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component'; // Import MatSliderModule
+import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
+import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component'; // Import MatSliderModule
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ContractaddformComponent } from './core/components/contractaddform/cont
     EmployeeDetailDialogComponent,
     EmployeeupdateformComponent,
     ContractsmanagementComponent,
-    ContractaddformComponent
+    ContractaddformComponent,
+    ContractrenewformComponent
   ],
   imports: [
     BrowserModule,

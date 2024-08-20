@@ -35,7 +35,27 @@
 <hr class="separator" />
 <div class="third-section">
   <h3>Contracts hitsory </h3>
-  
+ 
+</div>
+<div class="tableContainer">
+  <table>
+    <tr>
+      <th>Contract Type</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Duration</th>
+     
+    </tr>
+    <tr>
+      <tr *ngFor="let contract of Contracts">
+        <td>{{ contract.type }}</td>
+        <td>{{ contract.datedeb | date }}</td>
+        <td>{{ contract.dateFin | date }}</td>
+        <td>{{ calculateDuration(contract.datedeb, contract.dateFin) }}</td>
+        <td>{{ employeeData.salary | currency }}</td>
+      </tr>
+    
+  </table>
 </div>
 </div>
 

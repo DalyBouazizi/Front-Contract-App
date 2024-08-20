@@ -16,10 +16,26 @@ export class ContractService {
   getContracts(): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetAllContracts`);
   }
+  getLatestContracts(): Observable<ContractsModel[]> {
+    return this.http.get<ContractsModel[]>(`${this.apiUrl}GetAllLatestContracts`);
+  }
   GetContractByEmployeeId(id : number): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractByEmployeeId?EmployeeId=${id}`);
   }
 
   addContract(contract : ContractsModel ) : Observable<string> {
     return this.http.post<string>(`${this.apiUrl}AddContract`, contract , { responseType: 'text' as 'json' })   }
+
+  Renewcontract(employeeId: number, newContract: ContractsModel ) : Observable<any> {
+    const payload = {
+      employeeId: employeeId,
+      newContract: newContract
+    };
+    console.log(payload);
+    return this.http.post<string>(`${this.apiUrl}RenewContract`, payload , { responseType: 'text' as 'json' })   }
+
+    deleteContract(id: number): Observable<string> {
+      const url = `${this.apiUrl}DeleteContract?IdContract=${id}`;
+      return this.http.delete<string>(url,  { responseType: 'text' as 'json' });
+}
 }

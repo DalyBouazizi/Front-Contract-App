@@ -12,7 +12,7 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
     .mat-mdc-snack-bar-container {
         &.success-snackbar {
           
-          --mdc-snackbar-container-color: #9db0e4;
+          --mdc-snackbar-container-color: #54a1fec2;
           --mat-mdc-snack-bar-button-color: rgb(255, 255, 255);
           
           /* --mdc-snackbar-supporting-text-color: blue; */ /* Change the text color */
@@ -21,14 +21,16 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
         &.mat-mdc-snack-bar-container .mdc-snackbar__surface {
           
             border-radius: 20px !important;
-            width: 550px !important;
+            width: 650px !important;
             height: 80px !important;
+           
           }
           &.mat-mdc-snack-bar-container.success-snackbar .mat-mdc-button {
             color: rgb(98, 94, 94) !important; /* Change to your preferred color */
             padding: 2px !important;
-            background-color: rgba(147, 139, 139, 0.1);
+            background-color: rgba(147, 139, 139, 0.1) !important;
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
 
             
             

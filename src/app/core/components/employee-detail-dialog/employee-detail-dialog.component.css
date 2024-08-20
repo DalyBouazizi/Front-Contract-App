@@ -58,3 +58,8 @@ border: none !important;
         background-color: #8797C2;
         color: beige;
     }
+
+
+.tableContainer table{
+  width: 100%;
+}

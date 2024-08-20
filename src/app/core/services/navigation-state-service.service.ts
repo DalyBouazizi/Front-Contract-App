@@ -47,6 +47,24 @@ export class NavigationStateServiceService {
       return this.employeeToUpdate;
     }
 
-   
+    
+    private itemToRenew: any;
 
+    setItemToRenew(item: any) {
+      this.itemToRenew = item;
+    }
+  
+    getItemToRenew() {
+      return this.itemToRenew;
+    }
+    
+
+    private contRenewed: boolean = false;
+
+    setContRenewed(state: boolean) {
+      this.contRenewed = state;}
+  
+    isContRenewed(): boolean {
+      return this.contRenewed;}
+    
 }
