@@ -95,10 +95,12 @@
        justify-content: center;
        align-items: center;
       cursor: default; /* Keeps the cursor as default (not a pointer) */
-       background-color: #e7d0aa;
-       color: #f39908;
-       border: #f39908 1px solid;
+       background-color: #FFE4E8;
+       color: #F66988;
+       border: #F66988 0px solid;
        margin: 0 auto; /* Center horizontally */
+       
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     }
    
     .add-user-container a{
