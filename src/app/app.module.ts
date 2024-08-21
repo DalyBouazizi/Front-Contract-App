@@ -30,7 +30,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
 import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
 import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
-import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component'; // Import MatSliderModule
+import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component';
+import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component'; // Import MatSliderModule
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ContractupdateformComponent } from './core/components/contractupdatefor
     ContractsmanagementComponent,
     ContractaddformComponent,
     ContractrenewformComponent,
-    ContractupdateformComponent
+    ContractupdateformComponent,
+    ContractNotifierComponent
   ],
   imports: [
     BrowserModule,

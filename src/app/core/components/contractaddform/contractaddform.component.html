@@ -48,7 +48,7 @@
                     <label for="exampleInputMatricule" ><b>Registration number</b></label>
                    
                     <input  name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" id="RegistrationNumber" 
-                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)"   (blur)="CheckValidity($event)">
+                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)"  (keydown)="clearinput()" (blur)="CheckValidity($event)">
                     <!-- <input  [(ngModel)]="model.matricule" name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" 
                      id="RegistrationNumber" aria-describedby="MatriculeHelp" (keyup)="checkmatricule($event); FormValid = true"> -->
                     

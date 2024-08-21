@@ -26,12 +26,12 @@ export class ContractaddformComponent {
   employeeExists: boolean | null = null; // Status of employee existence check
  ContractExists: boolean | null = null; // Status of employee existence check
  FormValid: boolean | null = null; // Status of form validity check
- Employee : EmployeeGetModel = {id:0, nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: ''}; // Employee data
  formattedDateNaissance = '';
  formattedDateCin = '';
+ Employee : EmployeeGetModel = {id:0, nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: ''}; // Employee data
 Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
-ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdown
 CombinedData: any = {};
+ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdown
 
   CheckValidity(event: any): void {
     const id = event.target.value;
@@ -76,21 +76,20 @@ CombinedData: any = {};
 
 }
 
-// clearinput(){
-//   this.Employee.nom = '';
-//   this.Employee.prenom = '';
-//   this.Employee.poste = '';
-//   this.Employee.adresse = '';
-//   this.Employee.dateNaissance = new Date();
-//   this.Employee.lieuNaissance = '';
-//   this.Employee.cin = '';
-//   this.Employee.dateCin = new Date();
-//   this.Employee.categoriePro = '';
-//   this.Employee.salaireb = 0;
-//   this.Employee.salairen = 0;
+clearinput(){
+  this.Employee.nom = '';
+  this.Employee.prenom = '';
+  this.Employee.poste = '';
+  this.Employee.adresse = '';
+  this.Employee.dateNaissance = new Date();
+  this.Employee.lieuNaissance = '';
+  this.Employee.cin = '';
+  this.Employee.dateCin = new Date();
+  this.Employee.categoriePro = '';
 
 
-// }
+
+}
 
 isFormValid(): boolean {
   return this.Contract.salaireb !== null && 
@@ -119,7 +118,6 @@ onFormSubmit(){
       this.Contract.employeeId = this.Employee.id;
       this.contractService.addContract(this.Contract).subscribe({
         next: (response) => {
-          console.log('Contract added successfully');
            this.navigationStateService.setContAdded(true);
       this.router.navigate(['/ContractsManagement'] , { state: { added: true } });
         },

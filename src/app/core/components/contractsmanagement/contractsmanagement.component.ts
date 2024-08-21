@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
+import { error } from 'node:console';
 @Component({
   selector: 'app-contractsmanagement',
   templateUrl: './contractsmanagement.component.html',
@@ -34,13 +35,13 @@ export class ContractsmanagementComponent {
     
     this.fetchContracts();
     if (this.navigationStateService.isContAdded()) {
-      console.log('here')
+     
        this.snackBar.open('Employee added successfully!', 'Close', {
          duration: 6000,
          verticalPosition: 'top',
          panelClass: ['success-snackbar']
        });
-       this.navigationStateService.setEmpAdded(false); // Reset state
+       this.navigationStateService.setContAdded(false); // Reset state
       }
       if (this.navigationStateService.isContRenewed()) {
         console.log('here')
@@ -90,7 +91,7 @@ export class ContractsmanagementComponent {
   }
 
   
-deleteContract(idcontract: number) {
+deleteContract(idcontract: number , idemployee: number) {
   const dialogRef = this.dialog.open(ConfirmDialogComponent);
 
   dialogRef.afterClosed().subscribe(result => {
@@ -98,6 +99,24 @@ deleteContract(idcontract: number) {
           this.contractService.deleteContract(idcontract)
           .subscribe({
             next: (response :string) => {
+
+              this.employeeService.getemployeebyrealid(idemployee).subscribe(
+                (employee) => {
+                    employee.salaireb = undefined;
+                    employee.salairen = undefined;
+
+                    this.employeeService.UpdateEmployee(employee).subscribe({
+                      next: (response) => {
+                        
+                      },
+                      error: (error) => {
+                        
+                      }
+                    });
+
+                },error => {
+
+                });
               
                 this.snackBar.open('Contract deleted successfully!', 'Close', {
                   duration: 3000,verticalPosition: 'top', panelClass:['success-snackbar'], });
