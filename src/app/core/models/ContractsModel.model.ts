@@ -3,5 +3,7 @@ export interface ContractsModel {
     type: string;
     datedeb: Date;
     dateFin: Date;
+    salaireb?: number; // Optional property
+    salairen?: number; // Optional property
     employeeId: number;
 }

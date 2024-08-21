@@ -48,7 +48,7 @@
                     <label for="exampleInputMatricule" ><b>Registration number</b></label>
                    
                     <input  name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" id="RegistrationNumber" 
-                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)"  (keydown)="clearinput()" (blur)="CheckValidity($event)">
+                    aria-describedby="MatriculeHelp" (keyup)="CheckValidity($event)"   (blur)="CheckValidity($event)">
                     <!-- <input  [(ngModel)]="model.matricule" name="RegistrationNumber"type="number"  placeholder="Matricule"class="form-control" 
                      id="RegistrationNumber" aria-describedby="MatriculeHelp" (keyup)="checkmatricule($event); FormValid = true"> -->
                     
@@ -93,11 +93,11 @@
                 </div>
                 <div class="form-group">
                     <label for="salaireb">Salaire Brut</label>
-                    <input   type="number" class="form-control" id="salaireb" name="salaireb" [(ngModel)]="Employee.salaireb" placeholder="Salaire Brut" (keydown)="FormValid = true" required>
+                    <input   type="number" class="form-control" id="salaireb" name="salaireb" [(ngModel)]="Contract.salaireb" placeholder="Salaire Brut" (keydown)="FormValid = true" required>
                 </div>
                 <div class="form-group">
                     <label for="salairen">Salaire Net</label>
-                    <input  type="number" class="form-control" id="salairen" name="salairen" [(ngModel)]="Employee.salairen"placeholder=" Salaire Net" (keydown)="FormValid = true" required>
+                    <input  type="number" class="form-control" id="salairen" name="salairen" [(ngModel)]="Contract.salairen"placeholder=" Salaire Net" (keydown)="FormValid = true" required>
                 </div>
                 
                 <div class="form-group">

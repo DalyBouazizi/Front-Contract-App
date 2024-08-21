@@ -3,6 +3,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { EmployeeModel } from '../../models/EmployeeModel.model';
 import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
 import { Router } from '@angular/router';
+import { ContractService } from '../../services/contract.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class EmployeeaddformComponent {
   jobPositions: string[] = ['Developer', 'Designer', 'Manager', 'Analyst']; // Job positions for dropdown
 
 
-constructor(private employeeservice : EmployeeService , private navigationStateService :NavigationStateServiceService 
+constructor(private employeeservice : EmployeeService , private navigationStateService :NavigationStateServiceService , private contractserive : ContractService
   , private router: Router
 ) { }
   

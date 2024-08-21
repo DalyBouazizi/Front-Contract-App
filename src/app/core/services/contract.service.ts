@@ -22,9 +22,15 @@ export class ContractService {
   GetContractByEmployeeId(id : number): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractByEmployeeId?EmployeeId=${id}`);
   }
+  GetLatestContractByEmpid(id : number): Observable<ContractsModel> {
+    return this.http.get<ContractsModel>(`${this.apiUrl}GetLatestByEmpId?EmployeeID=${id}`);
+  }
 
   addContract(contract : ContractsModel ) : Observable<string> {
     return this.http.post<string>(`${this.apiUrl}AddContract`, contract , { responseType: 'text' as 'json' })   }
+
+  UpdateContract(contract : ContractsModel ) : Observable<string> {
+    return this.http.put<string>(`${this.apiUrl}UpdateContract`, contract , { responseType: 'text' as 'json' })   }
 
   Renewcontract(employeeId: number, newContract: ContractsModel ) : Observable<any> {
     const payload = {

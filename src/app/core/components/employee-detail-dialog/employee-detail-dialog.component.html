@@ -44,6 +44,7 @@
       <th>Start Date</th>
       <th>End Date</th>
       <th>Duration</th>
+      <th>Salary</th>
      
     </tr>
     <tr>
@@ -52,7 +53,7 @@
         <td>{{ contract.datedeb | date }}</td>
         <td>{{ contract.dateFin | date }}</td>
         <td>{{ calculateDuration(contract.datedeb, contract.dateFin) }}</td>
-        <td>{{ employeeData.salary | currency }}</td>
+        <td>{{ contract.salaireb | currency }}</td>
       </tr>
     
   </table>

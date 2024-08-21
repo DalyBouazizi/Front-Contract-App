@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EmployeeModel } from '../models/EmployeeModel.model';
 import { DatePipe } from '@angular/common';
+import { ContractsModel } from '../models/ContractsModel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,16 @@ export class NavigationStateServiceService {
       return this.employeeToUpdate;
     }
 
+    private itemToUpdate: any;
+
+    setContractToUpdate(item: any) {
+      this.itemToUpdate = item;
+    }
+   
+    getContractToUpdate(): ContractsModel {
+      return this.itemToUpdate;
+    }
+
     
     private itemToRenew: any;
 
@@ -66,5 +77,13 @@ export class NavigationStateServiceService {
   
     isContRenewed(): boolean {
       return this.contRenewed;}
+
+    private ContUpdated: boolean = false;
+
+    setContUpdated(state: boolean) {
+      this.ContUpdated = state;}
+  
+      isContUpdated(): boolean {
+      return this.ContUpdated;}
     
 }

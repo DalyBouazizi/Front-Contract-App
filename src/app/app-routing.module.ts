@@ -12,6 +12,7 @@ import { EmployeeupdateformComponent } from './core/components/employeeupdatefor
 import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
 import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
 import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
+import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,11 @@ const routes: Routes = [
   {
     path: 'ContractRenew',
     component: ContractrenewformComponent,
+    canActivate: [authGuard], // Apply guard (if needed)
+  },
+  {
+    path: 'ContractUpdate',
+    component: ContractupdateformComponent,
     canActivate: [authGuard], // Apply guard (if needed)
   },
   {

@@ -29,7 +29,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSliderModule } from '@angular/material/slider';
 import { ContractsmanagementComponent } from './core/components/contractsmanagement/contractsmanagement.component';
 import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
-import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component'; // Import MatSliderModule
+import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
+import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component'; // Import MatSliderModule
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ContractrenewformComponent } from './core/components/contractrenewform/
     EmployeeupdateformComponent,
     ContractsmanagementComponent,
     ContractaddformComponent,
-    ContractrenewformComponent
+    ContractrenewformComponent,
+    ContractupdateformComponent
   ],
   imports: [
     BrowserModule,

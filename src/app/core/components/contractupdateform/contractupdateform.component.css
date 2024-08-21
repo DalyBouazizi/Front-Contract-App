@@ -1,0 +1,97 @@
+/* Hide the increase/decrease arrows in input[type=number] for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide the increase/decrease arrows in input[type=number] for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+.formcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    
+}
+.formcontainer form {
+    width: 80%; /* Increase the width for more space */
+    padding: 20px;
+    background-color: rgba(240, 248, 255, 0.5);
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Two columns */
+    grid-gap: 15px; /* Space between fields */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnz {
+    background-color: #347da7;
+    color: white;
+    display: block;
+    margin: 10px auto 0 auto; /* Center the button */
+}
+
+.btnz:hover {
+    background-color: #ACBBDA;
+    color: white;
+}
+
+/* Ensure the form is responsive */
+@media (max-width: 768px) {
+    .formcontainer form {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Stack fields on smaller screens */
+    }
+}
+.alertgroup{
+   width: 100%;
+   display: grid;
+   align-items: center;
+
+    gap: 10px;
+}
+
+.form-control:disabled{
+    background-color: #f5f5f59c !important;
+}
+
+
+.btno{
+    background-color: rgba(52, 125, 167, 0.7) ;
+    color: white;
+    padding: 7px 7px;
+ 
+    justify-self: flex-end;
+    margin-top: -5px !important;
+    animation: lightning 2s infinite; /* Apply the animation */
+   
+  }
+  .btno:hover{
+      background-color: #ACBBDA !important;
+      color: white;
+    } 
+
+    @keyframes lightning {
+        0%, 100% {
+            background-color: rgba(167, 52, 86, 0.702) ;
+        }
+        50% {
+            background-color: rgba(209, 105, 148, 0.702) ; /* Lightning effect */
+            
+            color: black;
+        }
+    }

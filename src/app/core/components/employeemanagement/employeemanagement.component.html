@@ -123,7 +123,13 @@
                     <td>{{e.prenom}}</td>
                     <td>{{e.poste}}</td>
                     <td>{{e.categoriePro}}</td>
-                    <td>{{e.salaireb}}</td>
+                    <td><div *ngIf="e.salaireb !== null; else noSalary">
+                        {{e.salaireb}}
+                    </div>
+                    <ng-template #noSalary>
+                        <button class="alertnocont">No contract</button>
+                    </ng-template>
+                </td>
                     <td class="d-flex justify-content-center" >
                        
                         <button class="btn btn-secondary m-1" (click)="openEmployeeDetailDialog(e)">

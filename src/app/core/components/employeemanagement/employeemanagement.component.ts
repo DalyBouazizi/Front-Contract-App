@@ -15,6 +15,7 @@ import { HttpParams } from '@angular/common/http';
 import * as DataTables from 'datatables.net';
 import * as XLSX from 'xlsx'; // Import xlsx library
 import { cp } from 'fs';
+import { ContractService } from '../../services/contract.service';
 
 
 @Component({
@@ -53,7 +54,7 @@ dtElement!: DataTableDirective;
 
   dtTrigger:Subject<any> = new Subject<any>();
   
-  constructor(private employeeservice: EmployeeService, private router: Router,public dialog: MatDialog,
+  constructor(private employeeservice: EmployeeService, private router: Router,public dialog: MatDialog, private contractservice: ContractService, 
     private snackBar: MatSnackBar, private navigationStateService: NavigationStateServiceService,) { }
   ngOnInit(): void {
     $.fn.dataTable.ext.errMode = 'none';
@@ -109,6 +110,9 @@ dtElement!: DataTableDirective;
        }
 
   }
+
+
+
 // import export --------------------
 
   exportToExcel(): void {
@@ -259,12 +263,13 @@ dtElement!: DataTableDirective;
       this.employeeservice.getEmployees().subscribe(
         (data) => {
           this.emps = data;
-        },
-        (error) => {
+         }, (error) => {
           console.error('Error fetching employees', error);
-        }
-      );
-    } // Refresh the user list
+        });
+
+
+        
+    } 
 
     deleteEmployee(matricule: number) {
       const dialogRef = this.dialog.open(ConfirmDialogComponent);

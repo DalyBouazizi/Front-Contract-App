@@ -29,6 +29,7 @@
 .table td {
     line-height: 1.2; /* Adjust line height as needed */
     padding: 5px; /* Adjust padding to control spacing */
+    
 }
   .table-container{
     margin-top: 0px;
@@ -83,6 +84,21 @@
       width: 30%;
     
       
+    }
+
+    .alertnocont{
+      width: 70%;
+       height:  23px !important;
+       pointer-events: none; /* Prevents clicking */
+       border-radius: 10px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+      cursor: default; /* Keeps the cursor as default (not a pointer) */
+       background-color: #e7d0aa;
+       color: #f39908;
+       border: #f39908 1px solid;
+       margin: 0 auto; /* Center horizontally */
     }
    
     .add-user-container a{

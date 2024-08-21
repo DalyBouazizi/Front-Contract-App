@@ -51,10 +51,19 @@ export class ContractsmanagementComponent {
          });
          this.navigationStateService.setContRenewed(false); // Reset state
         }
+        if (this.navigationStateService.isContUpdated()) {
+          console.log('here')
+           this.snackBar.open('Contract renewed successfully!', 'Close', {
+             duration: 6000,
+             verticalPosition: 'top',
+             panelClass: ['success-snackbar']
+           });
+           this.navigationStateService.setContUpdated(false); // Reset state
+          }
   }
 
  
-
+  
 
   fetchContracts() {
 
@@ -121,5 +130,13 @@ deleteContract(idcontract: number) {
             this.navigationStateService.setItemToRenew(convertedItem);
             this.router.navigate(['/ContractRenew']);
           }
-          
+          navigateToUpdate(item :any) {
+            const convertedItem = {
+              contracts: [item.contract], // Convert single contract to an array of contracts
+              employee: item.employee
+          };
+            
+            this.navigationStateService.setContractToUpdate(convertedItem);
+            this.router.navigate(['/ContractUpdate']);
+          }
 }

@@ -76,27 +76,27 @@ CombinedData: any = {};
 
 }
 
-clearinput(){
-  this.Employee.nom = '';
-  this.Employee.prenom = '';
-  this.Employee.poste = '';
-  this.Employee.adresse = '';
-  this.Employee.dateNaissance = new Date();
-  this.Employee.lieuNaissance = '';
-  this.Employee.cin = '';
-  this.Employee.dateCin = new Date();
-  this.Employee.categoriePro = '';
-  this.Employee.salaireb = 0;
-  this.Employee.salairen = 0;
+// clearinput(){
+//   this.Employee.nom = '';
+//   this.Employee.prenom = '';
+//   this.Employee.poste = '';
+//   this.Employee.adresse = '';
+//   this.Employee.dateNaissance = new Date();
+//   this.Employee.lieuNaissance = '';
+//   this.Employee.cin = '';
+//   this.Employee.dateCin = new Date();
+//   this.Employee.categoriePro = '';
+//   this.Employee.salaireb = 0;
+//   this.Employee.salairen = 0;
 
 
-}
+// }
 
 isFormValid(): boolean {
-  return this.Employee.salaireb !== null && 
-  this.Employee.salaireb !== undefined &&
-  this.Employee.salairen !== null &&
-  this.Employee.salairen !== undefined &&
+  return this.Contract.salaireb !== null && 
+  this.Contract.salaireb !== undefined &&
+  this.Contract.salairen !== null &&
+  this.Contract.salairen !== undefined &&
   this.Contract.type.trim() !== '' &&
   this.Contract.datedeb !== null &&  
   this.Contract.datedeb !== undefined &&
@@ -108,6 +108,8 @@ isFormValid(): boolean {
 onFormSubmit(){
   this.Employee.dateNaissance = new Date(this.formattedDateNaissance);
   this.Employee.dateCin = new Date(this.formattedDateCin);
+  this.Employee.salaireb = this.Contract.salaireb;
+  this.Employee.salairen = this.Contract.salairen;
   if (this.isFormValid()){
   this.employeeService.UpdateEmployee(this.Employee)
   .subscribe({

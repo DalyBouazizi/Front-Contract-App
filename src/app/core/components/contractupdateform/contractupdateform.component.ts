@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NavigationStateServiceService } from '../../services/navigation-state-service.service';
+import { EmployeeService } from '../../services/employee.service';
+import { Router } from '@angular/router';
+import { ContractService } from '../../services/contract.service';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
 import { ContractsModel } from '../../models/ContractsModel.model';
-import { Router } from '@angular/router';
-import { EmployeeService } from '../../services/employee.service';
-import { ContractService } from '../../services/contract.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-contractrenewform',
-  templateUrl: './contractrenewform.component.html',
-  styleUrl: './contractrenewform.component.css'
+  selector: 'app-contractupdateform',
+  templateUrl: './contractupdateform.component.html',
+  styleUrl: './contractupdateform.component.css'
 })
-export class ContractrenewformComponent {
+export class ContractupdateformComponent {
 
   CombinedData: any = {};
  
@@ -23,9 +24,12 @@ export class ContractrenewformComponent {
   Catpro : string[] = ['HR', 'IT', 'CIT','FINANCE'];
   Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
   id : number = -1;
+  formattedDateDeb = '';
+  formattedDateFin = '';
   
 constructor(
-  private navigationStateService : NavigationStateServiceService, private employeeservice : EmployeeService, private router: Router, private contractservice : ContractService 
+  private navigationStateService : NavigationStateServiceService, private employeeservice : EmployeeService, private router: Router,
+   private contractservice : ContractService ,private datePipe: DatePipe,
 ){
 
 }
@@ -33,12 +37,14 @@ constructor(
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
-  this.CombinedData = this.navigationStateService.getItemToRenew();
+ 
+
+  this.CombinedData = this.navigationStateService.getContractToUpdate();
   this.Employee = this.CombinedData.employee;
   this.Contracts = this.CombinedData.contract;
-  console.log(this.Employee);
-  
-  console.log(this.Contracts);
+  this.loadData(this.Employee.id);
+  this.formattedDateDeb = this.datePipe.transform(this.Contract.datedeb, 'yyyy-MM-dd') || '';
+    this.formattedDateFin = this.datePipe.transform(this.Contract.dateFin, 'yyyy-MM-dd') || '';
 
   this.Contracts.forEach(contract => console.log(contract.type));
   this.FormValid = false;
@@ -57,7 +63,18 @@ isFormValid(): boolean {
   
 
 }
-
+loadData(id:number){
+  this.contractservice.GetLatestContractByEmpid(id).subscribe({
+    next: (response) => {
+      this.Contract = response;
+      
+    },
+    error: (error) => {
+      console.error('Error status:', error.status);  // Log HTTP status code
+      console.error('Error message:', error.message); // Log error message
+    }
+  });
+}
 // clearinput(){
   
 //   this.Employee.poste = '';
@@ -69,15 +86,17 @@ isFormValid(): boolean {
 //   this.Contract.dateFin = new Date();
 // }
 onsubmit() {
-  console.log(this.Employee);
-  console.log(this.Contract);
   this.Employee.salaireb = this.Contract.salaireb;
   this.Employee.salairen = this.Contract.salairen;
+  this.Contract.datedeb = new Date(this.formattedDateDeb);
+  this.Contract.dateFin = new Date(this.formattedDateFin);
+  console.log(this.Employee);
+  console.log(this.Contract);
   console.log(this.isFormValid());
 
     if (this.isFormValid()){
 
-      this.contractservice.Renewcontract( this.Employee.id, this.Contract).subscribe({
+      this.contractservice.UpdateContract(this.Contract).subscribe({
         next: (response :string) => {
          
 
@@ -86,7 +105,7 @@ onsubmit() {
               
 
 
-              this.navigationStateService.setContRenewed(true);
+              this.navigationStateService.setContUpdated(true);
               this.router.navigate(['/ContractsManagement']);
       
             },
@@ -114,6 +133,7 @@ onsubmit() {
 }
 
 }
+
 
 
 

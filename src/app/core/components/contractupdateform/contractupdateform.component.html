@@ -75,11 +75,11 @@
                 </div>
                 <div class="form-group">
                     <label for=">StartDate"><b>Start Date</b></label>
-                    <input  type="date" class="form-control" id=">StartDate" name=">StartDate"  [(ngModel)]="Contract.datedeb"  placeholder=">Start Date"(blur)="FormValid = true" required>
+                    <input  type="date" class="form-control" id=">StartDate" name=">StartDate"  [(ngModel)]="formattedDateDeb"  placeholder=">Start Date"(blur)="FormValid = true" required>
                 </div>
                 <div class="form-group">
                     <label for=">EndDate"><b>End Date</b></label>
-                    <input  type="date" class="form-control" id="EndDate" name="EndDate" placeholder="End Date"  [(ngModel)]="Contract.dateFin"(blur)="FormValid = true"  required>
+                    <input  type="date" class="form-control" id="EndDate" name="EndDate" placeholder="End Date"  [(ngModel)]="formattedDateFin"(blur)="FormValid = true"  required>
                 </div>
             </div>
             <button type="submit" class="btn btnz mt-3" [disabled]="FormValid === false"  >Submit</button>
