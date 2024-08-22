@@ -15,7 +15,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"[routerLink]="['SendEmail']"  >Alerts</a>
+            <a class="nav-link active" aria-current="page" href="#"[routerLink]="['AlertManagement']"  >Alerts
+              <span *ngIf="alertCount > 0" class="badge bg-danger">{{ alertCount }}</span>
+            </a>
+          
+
           </li>
 
           <li class="nav-item">

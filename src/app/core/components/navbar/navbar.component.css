@@ -4,6 +4,13 @@
   background-color: rgba(46, 0, 139, 0.15) !important ;
   
 }
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25em 0.4em;
+  border-radius: 50%;
+  color: white;
+  
+}
 .navbar-nav {
     display: flex;
     justify-content: center;

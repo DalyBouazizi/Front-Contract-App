@@ -1,0 +1,23 @@
+<div class="headercontainer">
+    <div class="buttonscontainer"> 
+        <button class="btn btn-primary" (click)="sendContractsEmailandAddAlert()">Refresh</button>
+    </div>   
+</div>
+<div class="cardscontainer" >
+    <div class="card" *ngFor="let item  of combinedList">
+
+
+    
+        
+        <div class="card-header">
+            <h5>Contract with of <b> {{item.employee.nom}} {{item.employee.prenom}} </b>is ending in <b>{{calculateDaysUntilEnd(item.contract.dateFin)}} </b> days</h5>
+            <span class="date">{{item.alert.alertDate}}</span>
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">Type : {{item.contract.type}}</h5>
+          <p class="card-text"> </p>
+          <a href="#" class="btn btn-primary">Take action</a>
+        </div>
+      </div>
+      
+</div>

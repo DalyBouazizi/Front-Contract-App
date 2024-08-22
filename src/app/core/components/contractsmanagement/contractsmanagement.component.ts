@@ -33,6 +33,7 @@ export class ContractsmanagementComponent {
     //Add 'implements OnInit' to the class.
     
     this.fetchContracts();
+    
     if (this.navigationStateService.isContAdded()) {
      
        this.snackBar.open('Employee added successfully!', 'Close', {
@@ -70,11 +71,13 @@ export class ContractsmanagementComponent {
     this.contractService.getLatestContracts().subscribe(
       (contracts) => {
         this.Contracts = contracts;
+        
         contracts.forEach(contract => {
           this.employeeService.getemployeebyrealid(contract.employeeId).subscribe(
             (employee) => {
             
               this.CombinedData.push({ contract, employee }); // Combine contract and employee data
+          
             },
             (error) => {
               console.error(`Error fetching employee with ID ${contract.employeeId}:`, error);
@@ -145,6 +148,7 @@ deleteContract(idcontract: number , idemployee: number) {
               contracts: [item.contract], // Convert single contract to an array of contracts
               employee: item.employee
           };
+        
             this.navigationStateService.setItemToRenew(convertedItem);
             this.router.navigate(['/ContractRenew']);
           }

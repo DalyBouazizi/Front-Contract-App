@@ -29,7 +29,7 @@ export class ContractNotifierComponent {
      // Trigger sendContractsEmail every 10 seconds
      this.intervalId = setInterval(() => {
       this.sendContractsEmail();
-    }, 10000); // 10000ms = 10 seconds
+    }, 3600000); // 10000ms = 10 seconds
   }
   ngOnDestroy(): void {
     if (this.intervalId) {

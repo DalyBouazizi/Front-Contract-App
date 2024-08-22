@@ -31,7 +31,8 @@ import { ContractsmanagementComponent } from './core/components/contractsmanagem
 import { ContractaddformComponent } from './core/components/contractaddform/contractaddform.component';
 import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
 import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component';
-import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component'; // Import MatSliderModule
+import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component';
+import { AlertsmanagementComponent } from './core/components/alertsmanagement/alertsmanagement.component'; // Import MatSliderModule
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ContractNotifierComponent } from './core/components/contract-notifier/c
     ContractaddformComponent,
     ContractrenewformComponent,
     ContractupdateformComponent,
-    ContractNotifierComponent
+    ContractNotifierComponent,
+    AlertsmanagementComponent
   ],
   imports: [
     BrowserModule,

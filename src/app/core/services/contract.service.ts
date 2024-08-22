@@ -22,6 +22,12 @@ export class ContractService {
   GetContractByEmployeeId(id : number): Observable<ContractsModel[]> {
     return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractByEmployeeId?EmployeeId=${id}`);
   }
+  GetContractsByEndingThisMonth(): Observable<ContractsModel[]> {
+    return this.http.get<ContractsModel[]>(`${this.apiUrl}GetContractsEndingInOneMonth`);
+  }
+  GetContractByContractId(id : number): Observable<ContractsModel> {
+    return this.http.get<ContractsModel>(`${this.apiUrl}GetContractById?idContract=${id}`);
+  }
   GetLatestContractByEmpid(id : number): Observable<ContractsModel> {
     return this.http.get<ContractsModel>(`${this.apiUrl}GetLatestByEmpId?EmployeeID=${id}`);
   }

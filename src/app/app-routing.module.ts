@@ -14,6 +14,7 @@ import { ContractaddformComponent } from './core/components/contractaddform/cont
 import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
 import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component';
 import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component';
+import { AlertsmanagementComponent } from './core/components/alertsmanagement/alertsmanagement.component';
 
 const routes: Routes = [
   {
@@ -74,8 +75,8 @@ const routes: Routes = [
     canActivate: [authGuard], // Apply guard (if needed)
   },
   {
-    path: 'SendEmail',
-    component: ContractNotifierComponent,
+    path: 'AlertManagement',
+    component: AlertsmanagementComponent,
     canActivate: [authGuard], // Apply guard (if needed)
   },
   {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserLoginModel } from './core/models/UserLoginModel.model';
 import { AuthService } from './core/services/auth.service';
+import { NotifierService } from './core/services/notifier.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent implements OnInit {
   title = 'Front-end-Contract';
   currentRoute: string = '';
-  constructor(private router: Router, private authService : AuthService) {}
+  constructor(private router: Router, private authService : AuthService,private emailNotifierService: NotifierService) {}
   
 
 
@@ -21,7 +23,11 @@ export class AppComponent implements OnInit {
           this.currentRoute = event.urlAfterRedirects;
         }
       });
-     }
-    
   
-}
+        // this.emailNotifierService.startWeeklyEmailNotifier();
+       
+     }
+
+  
+  
+  }
