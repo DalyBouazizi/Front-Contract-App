@@ -14,7 +14,7 @@ export class EmailService {
 
    ContractsApiUrl = 'http://localhost:5008/api/Contract/';
    EmployeeApiUrl = 'http://localhost:5008/api/Employee/';
-   EmailApiUrl = 'http://localhost:5008/api/Employee/';
+   EmailApiUrl = 'http://localhost:5008/api/Email/';
 
 
 
@@ -30,7 +30,7 @@ export class EmailService {
       subject,
       body
     };
-    return this.http.post(`${this.EmailApiUrl}/SendEmail`, payload);
+    return this.http.post(`${this.EmailApiUrl}SendEmail`, payload, { responseType: 'text' as 'json' });
   }
 
 }

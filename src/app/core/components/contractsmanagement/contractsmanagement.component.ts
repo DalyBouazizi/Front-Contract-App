@@ -24,9 +24,8 @@ export class ContractsmanagementComponent {
   ) { }
 
   Contracts : ContractsModel[] = []; 
-
-     CombinedData: { contract: ContractsModel, employee: EmployeeGetModel }[] = []; // New array to store combined data
-
+  CombinedData: { contract: ContractsModel, employee: EmployeeGetModel }[] = []; // New array to store combined data
+  today = new Date();
 
 
   ngOnInit(): void {
@@ -158,4 +157,23 @@ deleteContract(idcontract: number , idemployee: number) {
             this.navigationStateService.setContractToUpdate(convertedItem);
             this.router.navigate(['/ContractUpdate']);
           }
+
+
+
+          getContractColorClass(endDate: Date): string {
+            const contractEndDate = new Date(endDate);
+            const timeDiff = contractEndDate.getTime() - this.today.getTime();
+            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        
+            if (daysDiff >= 30) {
+              return 'Valid'; // Ending in 1 month or more
+            } else if (daysDiff > 0) {
+              return 'UnderOneMonth'; // Ending in less than 1 month but not yet ended
+            } else if (daysDiff >= -30) {
+              return 'EndedEarlier'; // Ended less than 1 month ago
+            } else {
+              return 'LongGone'; // Ended 1 month or more ago
+            }
+          }
 }
+

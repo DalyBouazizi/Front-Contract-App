@@ -4,6 +4,8 @@ import { ContractService } from '../../services/contract.service';
 import { EmployeeService } from '../../services/employee.service';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
 import { ContractsModel } from '../../models/ContractsModel.model';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contract-notifier',
@@ -12,7 +14,7 @@ import { ContractsModel } from '../../models/ContractsModel.model';
 })
 export class ContractNotifierComponent {
 
-  CombinedData: any = {};
+  CombinedData: { contract: ContractsModel, employee: EmployeeGetModel }[] = []; 
   Employee : EmployeeGetModel = {id:0, nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: ''}; // Employee data
   Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
   private intervalId: any;
@@ -33,42 +35,84 @@ export class ContractNotifierComponent {
   }
   sendContractsEmail() {
     this.emailSerevices.getContractsEndingInOneMonth().subscribe({
-      next: (response) => {
-        response.forEach(contract => {
-          this.employeeService.getemployeebyrealid(contract.employeeId).subscribe({
-            next: (employee) => {
-              this.CombinedData.push({ contract, employee });
+      next: (contracts) => {
+        const employeeRequests = contracts.map(contract => 
+          this.employeeService.getemployeebyrealid(contract.employeeId).pipe(
+            map(employee => ({ contract, employee }))
+          )
+        );
+
+        forkJoin(employeeRequests).subscribe({
+          next: (combinedData) => {
+            this.CombinedData = combinedData;
+            if (this.CombinedData.length > 0) {
+              this.emailBody = this.formatEmailBody(this.CombinedData);
+            
+              this.emailSerevices.sendEmail('bouazizimedali50@gmail.com', 'Contracts Ending This Month', this.emailBody)
+                .subscribe(response => {
               
-            },
-            error: (error) => {
-              // Handle error
+                }, error => {
+                 
+                });
             }
-          });
+          },
+          error: (error) => {
+            
+          }
         });
       },
       error: (error) => {
-        // Handle error
+      
       }
     });
-    if (this.CombinedData) {
-      console.log(this.CombinedData);
-      console.log('ready to send')
-       this.emailBody = this.formatEmailBody(this.CombinedData);
-      console.log(this.emailBody);
-      this.emailSerevices.sendEmail('bouazizimedali50@gmail.com', 'Contracts Ending This Month', this.emailBody)
-        .subscribe(response => {
-          console.log('Email sent successfully:', response);
-        }, error => {
-          console.error('Error sending email:', error);
-        });
-    }
   }
-
   formatEmailBody(CombinedData: any[]): string {
-    let body = 'The following contracts are ending this month:\n\n';
+
+    let body = `
+    <html>
+      <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #4CAF50;">Contracts Ending This Month</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Contract ID</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Employee Name</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">End Date</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Contract Type</th>
+            </tr>
+          </thead>
+          <tbody>
+  `;
+
+
+
+
     CombinedData.forEach(item => {
-      body += `Contract ID: ${item.contract.id} || Employee: ${item.employee.nom,item.employee.prenom}|| End Date: ${item.contract.dateFin} ||  End Date: ${item.contract.type}\n\n`;
-    });
+    body += `
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">${item.contract.id}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${item.employee.nom} ${item.employee.prenom}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${new Date(item.contract.dateFin).toLocaleDateString()}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${item.contract.type}</td>
+      </tr>
+    `;
+  });
+
+  body += `
+          </tbody>
+        </table>
+        <div style="text-align: center;">
+          <a href="http://localhost:4200/SendEmail" 
+             style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+            View More Details
+          </a>
+        </div>
+      </body>
+    </html>
+  `;
+
+
+
     return body;
   }
 

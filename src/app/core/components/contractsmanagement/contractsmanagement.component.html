@@ -39,6 +39,7 @@
                     <th>Start date</th>
                     <th>End date</th>
                     <th>Salary</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -50,6 +51,27 @@
                     <td>{{item.contract.datedeb}}</td>
                     <td>{{item.contract.dateFin}}</td>
                     <td>{{item.contract.salaireb}}</td>
+                    <td>
+
+                        <span *ngIf="getContractColorClass(item.contract.dateFin) === 'Valid'">
+                            <button class="Active">Active</button>
+                        </span>
+
+                        <span *ngIf="getContractColorClass(item.contract.dateFin) === 'UnderOneMonth'">
+                            <button class="Soon">Expiring Soon</button>
+                        </span>
+
+                        <span *ngIf="getContractColorClass(item.contract.dateFin) === 'EndedEarlier'">
+                            <button class="Recently">Recently Ended</button>
+                        </span>
+
+                        <span *ngIf="getContractColorClass(item.contract.dateFin) === 'LongGone'">
+                            <button class="Expired">Expired</button>
+                        </span>
+                        <!-- Add more conditions as needed -->
+                            
+
+                    </td>
                    
                     
                     <td class="d-flex justify-content-center" >

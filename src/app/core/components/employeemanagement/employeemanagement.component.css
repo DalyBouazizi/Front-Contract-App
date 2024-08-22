@@ -87,7 +87,7 @@
     }
 
     .alertnocont{
-      width: 70%;
+      width: 90%;
        height:  23px !important;
        pointer-events: none; /* Prevents clicking */
        border-radius: 10px;

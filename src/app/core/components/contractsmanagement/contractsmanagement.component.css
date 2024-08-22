@@ -61,3 +61,62 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+/*- -- ---------------------------*/
+
+.Active{
+  width: 74%;
+   height:  23px !important;
+   pointer-events: none; /* Prevents clicking */
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  cursor: default; /* Keeps the cursor as default (not a pointer) */
+   background-color: #E9F9EE;
+   color: #45C27A;
+   border: #45C27A 1px solid;
+   margin: 0 auto; /* Center horizontally */
+}
+.Soon{
+  width: 74%;
+   height:  23px !important;
+   pointer-events: none; /* Prevents clicking */
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  cursor: default; /* Keeps the cursor as default (not a pointer) */
+   background-color: #f7f0e6;
+   color: #f3a831;
+   border: #f3a831 1px solid;
+   margin: 0 auto; /* Center horizontally */
+}
+.Recently{
+  width: 80%;
+   height:  23px !important;
+   pointer-events: none; /* Prevents clicking */
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  cursor: default; /* Keeps the cursor as default (not a pointer) */
+   background-color: #FFE4E8;
+   color: #f97d79;
+   border: #f97d79 1px solid;
+   margin: 0 auto; /* Center horizontally */
+}
+.Expired{
+  width: 74%;
+   height:  23px !important;
+   pointer-events: none; /* Prevents clicking */
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  cursor: default; /* Keeps the cursor as default (not a pointer) */
+   background-color: #cb8993;
+   color: #53110f;
+   border: #53110f 1px solid;
+   margin: 0 auto; /* Center horizontally */
+}

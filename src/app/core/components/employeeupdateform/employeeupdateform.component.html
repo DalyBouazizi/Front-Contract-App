@@ -80,14 +80,7 @@
                     <label for="categoriePro">Categorie Professionelle</label>
                     <input  [(ngModel)]="model.categoriePro" type="text" class="form-control" id="categoriePro" name="categoriePro" placeholder="Categorie Professionelle"  (keydown)="FormValid = true"required>
                 </div>
-                <div class="form-group">
-                    <label for="salaireb">Salaire Brut</label>
-                    <input   [(ngModel)]="model.salaireb"type="number" class="form-control" id="salaireb" name="salaireb" placeholder="Salaire Brut" (keydown)="FormValid = true">
-                </div>
-                <div class="form-group">
-                    <label for="salairen">Salaire Net</label>
-                    <input  [(ngModel)]="model.salairen" type="number" class="form-control" id="salairen" name="salairen" placeholder="Salaire Net" (keydown)="FormValid = true">
-                </div>
+                
             </div>
             <button type="submit" class="btn btnz mt-3"  [disabled]=" CinExists === true" >Submit</button>
         </form>
