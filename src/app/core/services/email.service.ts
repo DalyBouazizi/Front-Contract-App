@@ -24,7 +24,7 @@ export class EmailService {
   }
 
   // Method to send an email
-  sendEmail(to: string, subject: string, body: string): Observable<any> {
+  sendEmail(to: string[], subject: string, body: string): Observable<any> {
     const payload = {
       to,
       subject,

@@ -6,6 +6,7 @@ import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
 import { ContractsModel } from '../../models/ContractsModel.model';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserserviceService } from '../../services/userservice.service';
 
 @Component({
   selector: 'app-contract-notifier',
@@ -20,7 +21,9 @@ export class ContractNotifierComponent {
   private intervalId: any;
   emailBody = ''; // Email body
 
-  constructor(private emailSerevices :EmailService,private contractService: ContractService, private employeeService: EmployeeService,) {}
+  constructor(private emailSerevices :EmailService,private contractService: ContractService, private employeeService: EmployeeService,
+          private userservices : UserserviceService
+  ) {}
 
   ngOnInit(): void {
      // Trigger sendContractsEmail every 10 seconds
@@ -33,10 +36,12 @@ export class ContractNotifierComponent {
       clearInterval(this.intervalId); // Clear the interval when the component is destroyed
     }
   }
+  
+  
   sendContractsEmail() {
     this.emailSerevices.getContractsEndingInOneMonth().subscribe({
       next: (contracts) => {
-        const employeeRequests = contracts.map(contract => 
+        const employeeRequests = contracts.map(contract =>
           this.employeeService.getemployeebyrealid(contract.employeeId).pipe(
             map(employee => ({ contract, employee }))
           )
@@ -47,25 +52,35 @@ export class ContractNotifierComponent {
             this.CombinedData = combinedData;
             if (this.CombinedData.length > 0) {
               this.emailBody = this.formatEmailBody(this.CombinedData);
-            
-              this.emailSerevices.sendEmail('bouazizimedali50@gmail.com', 'Contracts Ending This Month', this.emailBody)
-                .subscribe(response => {
-              
-                }, error => {
-                 
-                });
+
+              // Fetch all users to send the email to
+
+              // this.userservices.getUsers().subscribe(users => {
+              //   const recipients = users.map(user =>
+              //     `${user.nom.toLowerCase()}.${user.prenom.toLowerCase()}@sebn.tn`
+              //   );
+              const recipients = ['bouazizimedali99@gmail.com'];
+
+                this.emailSerevices.sendEmail(recipients, 'Contracts Ending This Month', this.emailBody)
+                  .subscribe(response => {
+                    console.log('Email sent successfully:', response);
+                  }, error => {
+                    console.error('Error sending email:', error);
+                  });
+              // });
             }
           },
           error: (error) => {
-            
+            console.error('Error fetching contract or employee data:', error);
           }
         });
       },
       error: (error) => {
-      
+        console.error('Error fetching contracts:', error);
       }
     });
   }
+
   formatEmailBody(CombinedData: any[]): string {
 
     let body = `
