@@ -43,10 +43,10 @@ ngOnInit(): void {
   this.Employee = this.CombinedData.employee;
   this.Contracts = this.CombinedData.contract;
   this.loadData(this.Employee.id);
+ 
+  this.Contract = this.Contracts[0];
   this.formattedDateDeb = this.datePipe.transform(this.Contract.datedeb, 'yyyy-MM-dd') || '';
-    this.formattedDateFin = this.datePipe.transform(this.Contract.dateFin, 'yyyy-MM-dd') || '';
-
-  this.Contracts.forEach(contract => console.log(contract.type));
+  this.formattedDateFin = this.datePipe.transform(this.Contract.dateFin, 'yyyy-MM-dd') || '';
   this.FormValid = false;
 }
 
@@ -90,9 +90,11 @@ onsubmit() {
   this.Employee.salairen = this.Contract.salairen;
   this.Contract.datedeb = new Date(this.formattedDateDeb);
   this.Contract.dateFin = new Date(this.formattedDateFin);
-  console.log(this.Employee);
-  console.log(this.Contract);
-  console.log(this.isFormValid());
+
+  if (this.Contract.type === 'CDI') {
+    this.Contract.dateFin = new Date(2040, 0, 1); // January 1, 2040
+  }
+
 
     if (this.isFormValid()){
 

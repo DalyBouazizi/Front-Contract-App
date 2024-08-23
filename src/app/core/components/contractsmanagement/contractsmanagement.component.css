@@ -65,7 +65,7 @@ input[type="number"] {
 /*- -- ---------------------------*/
 
 .Active{
-  width: 74%;
+  width: 100%;
    height:  23px !important;
    pointer-events: none; /* Prevents clicking */
    border-radius: 10px;
@@ -79,7 +79,7 @@ input[type="number"] {
    margin: 0 auto; /* Center horizontally */
 }
 .Soon{
-  width: 74%;
+  width: 100%;
    height:  23px !important;
    pointer-events: none; /* Prevents clicking */
    border-radius: 10px;
@@ -93,7 +93,7 @@ input[type="number"] {
    margin: 0 auto; /* Center horizontally */
 }
 .Recently{
-  width: 90%;
+  width: 100%;
    height:  23px !important;
    pointer-events: none; /* Prevents clicking */
    border-radius: 10px;
@@ -107,7 +107,7 @@ input[type="number"] {
    margin: 0 auto; /* Center horizontally */
 }
 .Expired{
-  width: 74%;
+  width: 100%;
    height:  23px !important;
    pointer-events: none; /* Prevents clicking */
    border-radius: 10px;

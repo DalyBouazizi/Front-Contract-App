@@ -109,6 +109,9 @@ onFormSubmit(){
   this.Employee.dateCin = new Date(this.formattedDateCin);
   this.Employee.salaireb = this.Contract.salaireb;
   this.Employee.salairen = this.Contract.salairen;
+  if (this.Contract.type === 'CDI') {
+    this.Contract.dateFin = new Date(2040, 0, 1); // January 1, 2040
+  }
   if (this.isFormValid()){
   this.employeeService.UpdateEmployee(this.Employee)
   .subscribe({

@@ -10,6 +10,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { Router } from '@angular/router';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
 import { error } from 'node:console';
+import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-contractsmanagement',
   templateUrl: './contractsmanagement.component.html',
@@ -19,7 +20,8 @@ export class ContractsmanagementComponent {
 
   constructor(
     private contractService: ContractService, private employeeService: EmployeeService, private navigationStateService: NavigationStateServiceService,
-    public dialog: MatDialog, private snackBar: MatSnackBar,private router: Router
+    public dialog: MatDialog, private snackBar: MatSnackBar,private router: Router,
+    private alerservice : AlertService
     
   ) { }
 
@@ -98,7 +100,7 @@ deleteContract(idcontract: number , idemployee: number) {
 
   dialogRef.afterClosed().subscribe(result => {
     if (result){
-          this.contractService.deleteContract(idcontract)
+          this.contractService.deleteAllContracts(idemployee)
           .subscribe({
             next: (response :string) => {
 
@@ -109,6 +111,20 @@ deleteContract(idcontract: number , idemployee: number) {
 
                     this.employeeService.UpdateEmployee(employee).subscribe({
                       next: (response) => {
+
+                       
+
+                           
+              // this.alerservice.deleteallalertforContractId(idcontract || 0).subscribe({
+              //   next: (response :string) => {
+                 
+              //   },
+              //   error: (error) => {
+                 
+              //   }
+              // });
+
+
                         
                       },
                       error: (error) => {
@@ -178,6 +194,13 @@ deleteContract(idcontract: number , idemployee: number) {
             } else {
               return 'LongGone'; // Ended 1 month or more ago
             }
+          }
+
+
+          isDateGreaterThan2039(date: Date): boolean {
+            const endDate = new Date(date);
+            const cutoffDate = new Date('2039-11-31T23:59:59');
+            return endDate > cutoffDate;
           }
 }
 

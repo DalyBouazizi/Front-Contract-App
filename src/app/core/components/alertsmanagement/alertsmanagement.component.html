@@ -2,22 +2,39 @@
     <!-- <div class="buttonscontainer"> 
         <button class="btn btn-primary" (click)="sendContractsEmailandAddAlert()">Refresh</button>
     </div>    -->
+    <h2>
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="55" height="55" viewBox="0 0 24 24">
+        <path d="M22.239,18.451L13.442,3.816C13.135,3.305,12.596,3,12,3s-1.135,0.305-1.441,0.815L1.761,18.451 c-0.312,0.519-0.32,1.168-0.022,1.695C2.036,20.673,2.597,21,3.203,21h17.595c0.605,0,1.167-0.327,1.464-0.854 C22.56,19.619,22.551,18.97,22.239,18.451z M12.5,18h-1c-0.276,0-0.5-0.224-0.5-0.5v-1c0-0.276,0.224-0.5,0.5-0.5h1 c0.276,0,0.5,0.224,0.5,0.5v1C13,17.776,12.776,18,12.5,18z M12,14L12,14c-0.552,0-1-0.448-1-1v-3c0-0.552,0.448-1,1-1h0 c0.552,0,1,0.448,1,1v3C13,13.552,12.552,14,12,14z"></path>
+    </svg>
+      Alerts</h2>
 </div>
-<div class="cardscontainer" >
-    <div class="card" *ngFor="let item  of combinedList">
+<div class="cardscontainer" *ngIf="combinedList && combinedList.length >= 1; else nodatafound" >
+    <div class="card" *ngFor="let item  of combinedList" >
 
 
     
         
         <div class="card-header">
-            <h5>Contract with of <b> {{item.employee.nom}} {{item.employee.prenom}} </b>is ending in <b>{{calculateDaysUntilEnd(item.contract.dateFin)}} </b> days</h5>
+            <h6>Contract of <b> {{item.employee.nom}} {{item.employee.prenom}} </b>is ending in <b>{{calculateDaysUntilEnd(item.contract.dateFin)}} </b> days</h6>
             <span class="date">{{item.alert.alertDate}}</span>
           </div>
         <div class="card-body">
-          <h5 class="card-title">Type : {{item.contract.type}}</h5>
+          <p class="card-title">Type of contract :<b> {{item.contract.type}}</b></p>
+          <p class="card-title">Departement : <b>{{item.employee.categoriePro}}</b></p>
+          <p class="card-title">Position : <b>{{item.employee.poste}}</b></p>
           <p class="card-text"> </p>
-          <a href="#" class="btn btn-primary">Take action</a>
+          <a href="#" class="btn btn-primary buttonscontainer" [routerLink]="['/ContractsManagement']">Take action</a>
         </div>
       </div>
       
+
+      
+
 </div>
+<ng-template #nodatafound>
+  <div class="no-data-container">
+  <div class="alert  mt-4 tex no-data-message"  role="alert">
+  No alerts were found.
+  </div>
+</div>
+</ng-template>

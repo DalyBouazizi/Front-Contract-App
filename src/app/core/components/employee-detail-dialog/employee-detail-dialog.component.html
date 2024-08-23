@@ -51,9 +51,11 @@
       <tr *ngFor="let contract of Contracts">
         <td>{{ contract.type }}</td>
         <td>{{ contract.datedeb | date }}</td>
-        <td>{{ contract.dateFin | date }}</td>
-        <td>{{ calculateDuration(contract.datedeb, contract.dateFin) }}</td>
-        <td>{{ contract.salaireb | currency }}</td>
+        <td *ngIf="!isDateGreaterThan2039(contract.dateFin)" >{{ contract.dateFin | date }}</td>
+        <td *ngIf="isDateGreaterThan2039(contract.dateFin)" >--</td>
+        <td *ngIf="!isDateGreaterThan2039(contract.dateFin)" >{{ calculateDuration(contract.datedeb, contract.dateFin) }}</td>
+        <td *ngIf="isDateGreaterThan2039(contract.dateFin)">Ongoing</td>
+        <td>{{ contract.salaireb }} TND</td>
       </tr>
     
   </table>

@@ -55,4 +55,12 @@ export class EmployeeDetailDialogComponent {
     this.dialogRef.close();
   }
 
+
+
+  isDateGreaterThan2039(date: Date): boolean {
+    const endDate = new Date(date);
+    const cutoffDate = new Date('2039-11-31T23:59:59');
+    return endDate > cutoffDate;
+  }
+
 }

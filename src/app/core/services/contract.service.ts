@@ -50,4 +50,8 @@ export class ContractService {
       const url = `${this.apiUrl}DeleteContract?IdContract=${id}`;
       return this.http.delete<string>(url,  { responseType: 'text' as 'json' });
 }
+    deleteAllContracts(id: number): Observable<string> {
+      const url = `${this.apiUrl}DeleteAllContractsByEmployeeId?employeeId=${id}`;
+      return this.http.delete<string>(url,  { responseType: 'text' as 'json' });
+}
 }

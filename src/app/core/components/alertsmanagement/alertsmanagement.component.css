@@ -2,14 +2,27 @@
     display: grid;
     align-items: center;
   
-  margin: 20px 0px;
+  margin: 20px 0px 5px 80px;
   width: 99%;
+  color: #ebbd76;
+}
+.headercontainer h2 {
+    font-weight: bolder;
+    
+}
+.icon{
+  margin-top: -10px;
 }
 .buttonscontainer {
- 
-  justify-self: flex-end;
-  margin: 20px 0px;
 
+  background-color: #364451 !important;
+  border: #364451 !important;
+}
+.buttonscontainer:hover {
+
+  background-color: #bebcbc !important;
+  border: #364451 1px solid !important;
+  color:#364451 !important ;
 }
 .cardscontainer {
     display: flex;
@@ -20,10 +33,10 @@
   }
   
   .card {
-    width: 85%; /* Make each card take the full width of the container */
+    width: 90%; /* Make each card take the full width of the container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
     padding: 20px; /* Optional: Add some padding */
-    background-color: #fff; /* Optional: Set a background color */
+    background-color: #f3f5ff; /* Optional: Set a background color */
     border-radius: 10px; /* Optional: Add rounded corners */
     position: relative; /* Set the card to relative positioning */
 
@@ -43,5 +56,8 @@
     margin-left: auto;
     font-size: 0.9em; /* Optional: Adjust font size */
     color: #888; /* Optional: Adjust color */
+  }
+  .card-body p{
+    color: gray;
   }
  

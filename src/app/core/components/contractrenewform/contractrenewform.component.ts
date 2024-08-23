@@ -77,7 +77,10 @@ onsubmit() {
   console.log(this.Contract);
   this.Employee.salaireb = this.Contract.salaireb;
   this.Employee.salairen = this.Contract.salairen;
-  console.log(this.isFormValid());
+  
+  if (this.Contract.type === 'CDI') {
+    this.Contract.dateFin = new Date(2040, 1, 1); // January 1, 2040
+  }
 
     if (this.isFormValid()){
 
@@ -91,11 +94,10 @@ onsubmit() {
               
               this.alerservice.deleteallalertforContractId(this.OldOne.id || 0).subscribe({
                 next: (response :string) => {
-                  console.log('alerts deleted');
+                 
                 },
                 error: (error) => {
-                  console.error('Error status:', error.status);  // Log HTTP status code
-                  console.error('Error message:', error.message); // Log error message
+                 
                 }
               })
 

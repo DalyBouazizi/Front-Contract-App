@@ -12,7 +12,7 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
     .mat-mdc-snack-bar-container {
         &.success-snackbar {
           
-          --mdc-snackbar-container-color: #54a1fec2;
+          --mdc-snackbar-container-color: #e3f7e1d8;
           --mat-mdc-snack-bar-button-color: rgb(255, 255, 255);
           
           /* --mdc-snackbar-supporting-text-color: blue; */ /* Change the text color */

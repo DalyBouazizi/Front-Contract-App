@@ -49,7 +49,7 @@
                     <td>{{item.employee.matricule}}</td>
                     <td>{{item.employee.nom}} {{item.employee.prenom}} </td>
                     <td>{{item.contract.datedeb}}</td>
-                    <td>{{item.contract.dateFin}}</td>
+                    <td>        {{ isDateGreaterThan2039(item.contract.dateFin) ? '--' : item.contract.dateFin }} </td>
                     <td>{{item.contract.salaireb}}</td>
                     <td>
 
