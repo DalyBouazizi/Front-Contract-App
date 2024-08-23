@@ -54,4 +54,11 @@ export class ContractService {
       const url = `${this.apiUrl}DeleteAllContractsByEmployeeId?employeeId=${id}`;
       return this.http.delete<string>(url,  { responseType: 'text' as 'json' });
 }
+
+
+// fiter
+
+fetchFilteredContracts(filterCriteria: any): Observable<ContractsModel[]> {
+  return this.http.get<ContractsModel[]>(`${this.apiUrl}filter`, { params: filterCriteria });
+}
 }

@@ -222,7 +222,7 @@ dtElement!: DataTableDirective;
       this.filter.maxAge= this.maxAge;
       this.filter.minSalary=this.minSalary;
       this.filter.maxSalary=this.maxSalary;
-    console.log('Filter criteria:', this.filter);
+   
     let queryParams = [];
 
     if (this.filter.positions && this.filter.positions.length > 0) {

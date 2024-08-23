@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { EmployeeGetModel } from '../../models/EmployeeGetModel.model';
 import { error } from 'node:console';
 import { AlertService } from '../../services/alert.service';
+import { ContractFilterCriteria } from '../../models/ContractFilterCriteriaModel.model';
+import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-contractsmanagement',
   templateUrl: './contractsmanagement.component.html',
@@ -29,6 +31,22 @@ export class ContractsmanagementComponent {
   CombinedData: { contract: ContractsModel, employee: EmployeeGetModel }[] = []; // New array to store combined data
   today = new Date();
 
+  selectedTypes: string[] = [];
+  Types: string[] = ['CDD', 'CDI', 'CIVP'];
+  selectedStatus: string[] = [];
+  Status: string[] = ['Recently Ended', 'Expiring Soon', 'Active', 'Expired'];
+  FilterStartDate: Date | null = null;
+  FilterEndDate: Date | null = null;
+
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    allowSearchFilter:false,
+    itemsShowLimit: 0,
+  };
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -112,20 +130,6 @@ deleteContract(idcontract: number , idemployee: number) {
                     this.employeeService.UpdateEmployee(employee).subscribe({
                       next: (response) => {
 
-                       
-
-                           
-              // this.alerservice.deleteallalertforContractId(idcontract || 0).subscribe({
-              //   next: (response :string) => {
-                 
-              //   },
-              //   error: (error) => {
-                 
-              //   }
-              // });
-
-
-                        
                       },
                       error: (error) => {
                         
@@ -141,15 +145,7 @@ deleteContract(idcontract: number , idemployee: number) {
                   this.CombinedData = [];
                   this.fetchContracts();
               this.router.navigate(['/ContractsManagement']);
-              
-              
-              // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-              //   dtInstance.clear(); // Clear the table
-              //   dtInstance.rows.add(this.emps); // Add the filtered data
-      
-              //   dtInstance.draw(); // Redraw the table
-              // });
-      
+             
             },
           error: (error) => {
             console.error('Error status:', error.status);  // Log HTTP status code
@@ -177,9 +173,6 @@ deleteContract(idcontract: number , idemployee: number) {
             this.navigationStateService.setContractToUpdate(convertedItem);
             this.router.navigate(['/ContractUpdate']);
           }
-
-
-
           getContractColorClass(endDate: Date): string {
             const contractEndDate = new Date(endDate);
             const timeDiff = contractEndDate.getTime() - this.today.getTime();
@@ -202,5 +195,97 @@ deleteContract(idcontract: number , idemployee: number) {
             const cutoffDate = new Date('2039-11-31T23:59:59');
             return endDate > cutoffDate;
           }
+
+
+          //---------Filtering----------------
+
+          applyFilters() {
+            // Create an instance of ContractFilterCriteria
+            const filters: ContractFilterCriteria = {
+                types: this.selectedTypes, // Array of selected types
+                isActive: this.selectedStatus.includes('Active') ? true : undefined,
+                isEndingSoon: this.selectedStatus.includes('Expiring Soon') ? true : undefined,
+                isEndedRecently: this.selectedStatus.includes('Recently Ended') ? true : undefined,
+                EndedOverOneMonth: this.selectedStatus.includes('Expired') ? true : undefined,
+                startDate: this.FilterStartDate ? this.FilterStartDate : undefined,
+                endDate: this.FilterEndDate ? this.FilterEndDate : undefined
+            };
+        
+                          let queryParams = [];
+
+                  if (filters.types && filters.types.length > 0) {
+                      queryParams.push(`Types=${filters.types.join(',')}`);
+                  }
+                  if (filters.isActive !== undefined) {
+                      queryParams.push(`IsActive=${filters.isActive}`);
+                  }
+                  if (filters.isEndingSoon !== undefined) {
+                      queryParams.push(`IsEndingSoon=${filters.isEndingSoon}`);
+                  }
+                  if (filters.isEndedRecently !== undefined) {
+                      queryParams.push(`IsEndedRecently=${filters.isEndedRecently}`);
+                  }
+                  if (filters.EndedOverOneMonth !== undefined) {
+                      queryParams.push(`EndedOverOneMonth=${filters.EndedOverOneMonth}`);
+                  }
+                  if (filters.startDate) {
+                      queryParams.push(`StartDate=${filters.startDate}`);
+                  }
+                  if (filters.endDate) {
+                      queryParams.push(`EndDate=${filters.endDate}`);
+                  }
+
+                  const queryString = queryParams.join('&');
+
+                  // Use HttpParams to handle query parameters
+                  let params = new HttpParams();
+                  queryParams.forEach(param => {
+                      const [key, value] = param.split('=');
+                      params = params.append(key, value);
+                  });
+
+                  console.log('queryString', queryString);
+                  console.log('params', params);
+
+                  this.fetchFilteredContracts(params);
+        }
+        
+          
+          
+         
+          resetFilters() {
+            this.selectedTypes = [];
+            this.selectedStatus = [];
+            this.FilterStartDate = null;
+            this.FilterEndDate = null;
+            this.CombinedData = [];
+            this.fetchContracts();
+          }
+
+          fetchFilteredContracts(filters?: any) {
+            this.contractService.fetchFilteredContracts(filters).subscribe(
+              (contracts) => {
+                this.Contracts = contracts;
+                this.CombinedData = [];
+                contracts.forEach(contract => {
+                  this.employeeService.getemployeebyrealid(contract.employeeId).subscribe(
+                    (employee) => {
+                      this.CombinedData.push({ contract, employee });
+                    },
+                    (error) => {
+                      console.error(`Error fetching employee with ID ${contract.employeeId}:`, error);
+                    }
+                  );
+                });
+              },
+              (error) => {
+                console.error(error);
+                this.CombinedData = [];
+              }
+            );
+          }
+        
+
+
 }
 

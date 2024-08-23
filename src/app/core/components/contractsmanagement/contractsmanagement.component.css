@@ -29,11 +29,11 @@
   .table-container{
     margin-top: 0px;
     margin-bottom: 10px;
-    width: 90% !important; 
+    width: 95% !important; 
   
   }
   .add-user-container {
-    width: 90%;
+    width: 30%;
     display: flex;
     justify-content: flex-end;
     
@@ -119,4 +119,91 @@ input[type="number"] {
    color: #53110f;
    border: #53110f 1px solid;
    margin: 0 auto; /* Center horizontally */
+}
+
+
+.SortSettingcontainer {
+  background-color: rgba(255, 255, 255, 0.3); /* Set background color to blue */
+  padding: 0px; /* Add padding for spacing */
+  display: flex;
+  justify-content:space-around; /* Distribute space between items */
+  align-items: center; /* Align items vertically */
+  width: 90%;
+  border: 2px solid #000000; /* Add border around container */
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.SortSettingcontainer .title{
+width: 200px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+margin-left: 5px;
+}
+.SortSettingcontainer .title h2{
+margin: 0px;
+font-weight: bolder;
+}
+
+.SortSettingcontainer select {
+  margin-right: 0px; /* Add margin between dropdowns */
+}
+
+.SortSettingcontainer button {
+  background-color: #349DA7; /* Button background color */
+  color: white; /* Button text color */
+  padding: 7px 11px; /* Button padding */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Button border radius */
+}
+
+.SortSettingcontainer button:hover {
+  background-color: #ACBBDA; /* Button hover background color */
+}
+.form-select{
+width: 150px !important;
+}
+.icon{
+margin-top: -3px;
+}
+
+.queryelements{
+width: 70%;
+margin-left: 15px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 8px;
+}
+
+.queryelements ng-multiselect-dropdown{
+width: 120px !important;
+}
+
+
+.vertical-line {
+border-left: 2px solid #999; /* Adjust color as needed */
+height: 50px; /* Adjust height as needed */
+margin: 0 10px; /* Adjust margin as needed */
+display: inline-block;
+vertical-align: middle;
+}
+.DateRangeSlider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.TextContainer{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0px 4px;
+  font-weight: bold;
+
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
