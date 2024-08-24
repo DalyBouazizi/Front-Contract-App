@@ -17,6 +17,8 @@ export class EmployeeaddformComponent {
   CinExists: boolean | null = null;
   CinValid: boolean | null = null;
   FormValid: boolean | null = null;
+  matriculeValid: boolean | null = null;
+
   model: EmployeeModel = {  nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(),lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: '' }; ;
   jobPositions: string[] = ['Developer', 'Designer', 'Manager', 'Analyst']; // Job positions for dropdown
 
@@ -27,8 +29,16 @@ constructor(private employeeservice : EmployeeService , private navigationStateS
   
 checkmatricule(event: any): void {
     const id = event.target.value;
-   
+    const isAllDigits = /^\d+$/.test(id);
+
    if (id) {
+
+if (id.length !== 5 || !isAllDigits) {
+        this.matriculeValid = false;
+        this.employeeExists = null;
+      } else {
+        this.matriculeValid = true;
+
       this.employeeservice.checkEmployeeExists(Number(id)).subscribe({
         next: (response) => {
           
@@ -40,7 +50,9 @@ checkmatricule(event: any): void {
           this.employeeExists = false; // Assume employee does not exist if error occurs
         }
       });
+    }
     } else {
+      this.matriculeValid = null; // Clear status if input is empty
       this.employeeExists = null; // Clear status if input is empty
     }}
   

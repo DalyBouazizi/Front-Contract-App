@@ -47,6 +47,15 @@ export class ContractsmanagementComponent {
     allowSearchFilter:false,
     itemsShowLimit: 0,
   };
+  dropdownSettings2 = {
+    singleSelection: true,
+    idField: 'item_id',
+    textField: 'item_text',
+    enableCheckAll: false,
+    allowSearchFilter:false,
+    itemsShowLimit: 0,
+    closeDropDownOnSelection: true
+  };
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -64,7 +73,7 @@ export class ContractsmanagementComponent {
        this.navigationStateService.setContAdded(false); // Reset state
       }
       if (this.navigationStateService.isContRenewed()) {
-        console.log('here')
+        
          this.snackBar.open('Contract renewed successfully!', 'Close', {
            duration: 6000,
            verticalPosition: 'top',
@@ -73,7 +82,7 @@ export class ContractsmanagementComponent {
          this.navigationStateService.setContRenewed(false); // Reset state
         }
         if (this.navigationStateService.isContUpdated()) {
-          console.log('here')
+          
            this.snackBar.open('Contract renewed successfully!', 'Close', {
              duration: 6000,
              verticalPosition: 'top',
@@ -83,7 +92,9 @@ export class ContractsmanagementComponent {
           }
   }
 
- 
+  resetSelected(){
+    this.selectedStatus = [];
+  }
   
 
   fetchContracts() {
@@ -244,13 +255,13 @@ deleteContract(idcontract: number , idemployee: number) {
                       params = params.append(key, value);
                   });
 
-                  console.log('queryString', queryString);
-                  console.log('params', params);
+                  
 
                   this.fetchFilteredContracts(params);
         }
         
-          
+
+    
           
          
           resetFilters() {

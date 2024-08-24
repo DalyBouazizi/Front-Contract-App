@@ -1,1 +1,50 @@
-<p>dashboard works!</p>
+<div>
+    <h1>Dashboard</h1>
+    
+   >
+
+    
+    <div>
+      <p>Number of Employees: {{ employeeCount }}</p>
+      <p>Number of Contracts: {{ contractCount }}</p>
+      <p>Number of Alerts: {{ alertCount }}</p>
+      <p>Average Salary: {{ averageSalary | currency }}</p>
+    </div>
+  
+    <div>
+      <h3>Employees by CategoriePro:</h3>
+      <ul>
+        <li *ngFor="let categorie of employeesByCategoriePro | keyvalue">
+          {{ categorie.key }}: {{ categorie.value }}
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <h3>Contracts by Type:</h3>
+      <ul>
+        <li *ngFor="let type of contractsByType | keyvalue">
+          {{ type.key }}: {{ type.value }}
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <h3>Average Salary by Department:</h3>
+      <ul>
+        <li *ngFor="let dept of averageSalaryByPosition | keyvalue">
+          {{ dept.key }}: {{ dept.value }} TND
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <h3>Age Distribution:</h3>
+      <ul>
+        <li *ngFor="let ageRange of ageDistribution | keyvalue">
+          {{ ageRange.key }}: {{ ageRange.value }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

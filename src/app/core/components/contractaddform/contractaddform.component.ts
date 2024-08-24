@@ -144,6 +144,7 @@ onFormSubmit(){
 }
 }
 navigateToRenew() {
+  console.log(this.CombinedData);
   this.navigationStateService.setItemToRenew(this.CombinedData);
   this.router.navigate(['/ContractRenew']);
 }

@@ -41,10 +41,13 @@ ngOnInit(): void {
   this.CombinedData = this.navigationStateService.getItemToRenew();
   console.log(this.CombinedData);
   this.Employee = this.CombinedData.employee;
-  this.Contracts = this.CombinedData.contracts || [];
+  this.Contracts = this.CombinedData.contract;
  
   this.OldOne = this.Contracts[0];
- 
+
+ console.log(this.Employee);
+  console.log(this.Contracts);
+  console.log(this.OldOne);
   this.FormValid = false;
 }
 
@@ -97,7 +100,7 @@ onsubmit() {
                  
                 },
                 error: (error) => {
-                 
+                 console.error('Error alert:', error.status);  // Log HTTP status code
                 }
               })
 

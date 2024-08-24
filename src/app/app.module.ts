@@ -32,7 +32,8 @@ import { ContractaddformComponent } from './core/components/contractaddform/cont
 import { ContractrenewformComponent } from './core/components/contractrenewform/contractrenewform.component';
 import { ContractupdateformComponent } from './core/components/contractupdateform/contractupdateform.component';
 import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component';
-import { AlertsmanagementComponent } from './core/components/alertsmanagement/alertsmanagement.component'; // Import MatSliderModule
+import { AlertsmanagementComponent } from './core/components/alertsmanagement/alertsmanagement.component';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { AlertsmanagementComponent } from './core/components/alertsmanagement/al
     DataTablesModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatSliderModule,
+  
+    
   ],
   providers: [
     DatePipe,

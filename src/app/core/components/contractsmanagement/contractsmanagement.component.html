@@ -23,9 +23,15 @@
         [placeholder]="'Status'"
         [data]="Status"
         [(ngModel)]="selectedStatus"
-        [settings]="dropdownSettings"
+        [settings]="dropdownSettings2"
+        [disabled]="selectedStatus.length >= 1"
+        
        >
     </ng-multiselect-dropdown>
+
+    <button (click)="resetSelected()">
+        Clear status
+    </button>
     
        
          

@@ -33,7 +33,7 @@
   
   }
   .add-user-container {
-    width: 30%;
+    width: 25%;
     display: flex;
     justify-content: flex-end;
     
@@ -133,6 +133,9 @@ input[type="number"] {
   margin-top: 10px;
   border-radius: 10px;
 }
+.SortSettingcontainer button{
+
+}
 .SortSettingcontainer .title{
 width: 200px;
 display: flex;
@@ -168,7 +171,7 @@ margin-top: -3px;
 }
 
 .queryelements{
-width: 70%;
+width: 100%;
 margin-left: 15px;
 display: flex;
 justify-content: flex-start;
