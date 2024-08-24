@@ -5,13 +5,59 @@ import { AlertService } from '../../services/alert.service';
 import { EmployeeModel } from '../../models/EmployeeModel.model';
 import { ContractsModel } from '../../models/ContractsModel.model';
 import { AlertModel } from '../../models/AlertModel.model';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+
 
 @Component({
   selector: 'app-dashboard',
+  
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+// ------------- Testing charts --------------
+
+chartOptions = {
+  title: {
+    text: 'Monthly Sales Data',
+  },
+  theme: 'light2',
+  animationEnabled: true,
+  exportEnabled: true,
+  axisY: {
+    includeZero: true,
+    valueFormatString: '$#,##0k',
+  },
+  data: [
+    {
+      type: 'column', //change type to bar, line, area, pie, etc
+      yValueFormatString: '$#,##0k',
+      color: '#01b8aa',
+      dataPoints: [
+        { label: 'Jan', y: 172 },
+        { label: 'Feb', y: 189 },
+        { label: 'Mar', y: 201 },
+        { label: 'Apr', y: 240 },
+        { label: 'May', y: 166 },
+        { label: 'Jun', y: 196 },
+        { label: 'Jul', y: 218 },
+        { label: 'Aug', y: 167 },
+        { label: 'Sep', y: 175 },
+        { label: 'Oct', y: 152 },
+        { label: 'Nov', y: 156 },
+        { label: 'Dec', y: 164 },
+      ],
+    },
+  ],
+};
+
+ 
+
+
+
+
+
+  // ----------------------------------------
 
   employees: EmployeeModel[] = [];
   contracts: ContractsModel[] = [];
@@ -26,26 +72,7 @@ export class DashboardComponent implements OnInit {
   averageSalaryByPosition: any = {};
   ageDistribution: any = {};
 
-  // Chart.js data
-  chartOptions: any = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      tooltip: {
-        callbacks: {
-          label: function(tooltipItem: any) {
-            return tooltipItem.label + ': ' + tooltipItem.raw + ' TND';
-          }
-        }
-      }
-    }
-  };
-
-  chartLabels: string[] = [];
-  chartData: number[] = [];
-
+ 
   constructor(
     private employeeService: EmployeeService,
     private contractService: ContractService,
@@ -108,9 +135,7 @@ export class DashboardComponent implements OnInit {
       this.averageSalaryByPosition[department] = dept.totalSalary / dept.count;
     }
 
-    // Prepare chart data
-    this.chartLabels = Object.keys(this.employeesByCategoriePro);
-    this.chartData = Object.values(this.employeesByCategoriePro);
+
   }
 
   calculateContractStatistics(): void {
