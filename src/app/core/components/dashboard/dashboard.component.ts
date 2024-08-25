@@ -197,10 +197,10 @@ export class DashboardComponent implements OnInit {
         type: 'column',
         color: '#01b8aa',
         dataPoints: [
-          { label: '20-30', y: this.ageDistribution.find(ad => ad.label === '20-30')?.y || 0 },
-          { label: '31-40', y: this.ageDistribution.find(ad => ad.label === '31-40')?.y || 0 },
-          { label: '41-50', y: this.ageDistribution.find(ad => ad.label === '41-50')?.y || 0 },
-          { label: '51+', y: this.ageDistribution.find(ad => ad.label === '51+')?.y || 0 },
+          { label: '20-30', y: 10},
+          { label: '31-40', y: 10 },
+          { label: '41-50', y: 5},
+          { label: '51+', y: 1},
         ],
       },
     ],
@@ -215,15 +215,15 @@ export class DashboardComponent implements OnInit {
     },
     data: [{
       type: "pie",
-      indexLabel: "{name}: {y}%",
+      indexLabel: "{name}: {y}",
       dataPoints: [
-        { name: "IT", y: this.employeesByCategoriePro['IT'] || 0 },
-        { name: "Finance", y: this.employeesByCategoriePro['Finance'] || 0 },
-        { name: "Marketing", y: this.employeesByCategoriePro['Marketing'] || 0 },
-        { name: "Sales", y: this.employeesByCategoriePro['Sales'] || 0 },
-        { name: "HR", y: this.employeesByCategoriePro['HR'] || 0 },
-        { name: "Management", y: this.employeesByCategoriePro['Management'] || 0 },
-        { name: "Others", y: this.employeesByCategoriePro['Others'] || 0 }
+        { name: "IT", y: 50 },
+        { name: "Finance", y: 40 },
+        { name: "Marketing", y: 20 },
+        { name: "Sales", y: 80 },
+        { name: "HR", y: 30 },
+        { name: "Management", y: 40 },
+        { name: "Others", y: 10 }
       ]
     }]
   }
