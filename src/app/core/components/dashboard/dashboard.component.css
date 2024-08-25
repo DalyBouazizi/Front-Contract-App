@@ -1,29 +1,183 @@
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .stat-card {
-    width: 200px;
-    text-align: center;
-  }
-  
-  .stat-value {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .chart-card {
-    width: 400px;
-    height: 400px;
-  }
-  
-  mat-card {
-    padding: 20px;
-  }
-  
-  mat-card-header {
-    background-color: #f5f5f5;
-  }
-  
+.dashboard {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center cards horizontally */
+  align-items: center; /* Center cards vertically if needed */
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: calc(25% - 20px); /* Adjust the width as needed */
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.leftsidebody, .rightsidebody {
+  flex: 1;
+}
+
+.leftsidebody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid gray; /* Add vertical gray line */
+  padding-right: 20px; /* Add padding to avoid overlap */
+
+}
+
+.rightsidebody {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px; /* Add padding to avoid overlap */
+
+}
+
+.rightsidebody p {
+  margin: 0; /* Remove default margin */
+
+  font-size: 23px;
+  color: #555;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+
+}
+
+.rightsidebody h3 {
+  margin: 2px 0 0;
+  font-size: 35px;
+  font-weight: bold;
+  color: #000;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+
+}
+
+.card-footer {
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  text-align: right;
+}
+.icon{
+  margin-top: -5px;
+}
+.card-footer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.card-footer button{
+
+  padding: 0px 5px;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.card-footer button:hover{
+
+ background-color: #f9f9f9;
+
+}
+
+
+.bar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+.category-name {
+  font-weight: bold;
+}
+
+.employee-count {
+  font-size: 1.2em;
+}
+.card2{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: calc(39% - 20px); /* Adjust the width as needed */
+  margin-top: 10px;
+}
+
+
+.card3 {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  margin: 0px 0px;
+  height: 370px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.card-header {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-body3 {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 5px 0;
+}
+
+.row .text {
+ 
+  width: 25%;
+  font-size: 23px;
+  color: #555;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+}
+
+.row .number {
+  width: 20%;
+ 
+  font-weight: bold;
+  font-size: 35px;
+  font-weight: bold;
+  color: #000;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+}
+
+hr {
+  border: none;
+  border-top: 3px solid #555555;
+  margin: 0;
+}

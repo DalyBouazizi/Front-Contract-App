@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 15px;
-    background-color: rgba(172, 179, 206, 0.3);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .card-header {
@@ -35,15 +35,20 @@
     align-items: center;
     justify-content: center;
 }
+.card-body .card-title {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; /* Font stack */
+}
 
 .card-body .btn {
     align-self: center;
 }
 .btnz{
-    background-color: #347da7;
-    color: white;
+    /*shadow for nutton */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    background-color: #7b9de0;
+    color: rgb(0, 0, 0);
 }
 .btnz:hover{
     background-color:white;
-    color: #347da7;
+    color: #7b9de0;
 }
