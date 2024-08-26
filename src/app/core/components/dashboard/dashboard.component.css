@@ -24,7 +24,7 @@
   flex: 1 1 calc(15% - 20px); /* Each card takes up 25% of the width minus the gap */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   margin: 10px ; /* Optional: Add some margin between cards */
-  background-color: #f0f0f0; /* Optional: Add background color for visibility */
+  background-color: #ffffff; /* Optional: Add background color for visibility */
   padding: 10px; /* Optional: Add some padding inside cards */
 
   height: fit-content;

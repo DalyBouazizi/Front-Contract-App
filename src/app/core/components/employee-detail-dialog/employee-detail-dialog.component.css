@@ -1,65 +1,93 @@
 .dialog-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Make the dialog content take 100% height */
+  display: flex;
+  flex-direction: column;
+  background-color: #EFE7F7;
+  color: black;
+}
 
-  }
-  p{
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    font-size: 17px;
-    
-  }
-  .dialog-content ,.dialog-actions{
-    background-color: #EFE7F7 !important;
-    color: black;
-   
+.header h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: bold;
+}
 
-  }
+.sections-container {
+  display: grid;
+  grid-template-columns: 30% 70%; /* Adjust columns to 70% and 30% */
+  gap: 0px; /* Remove gap between columns */
+  border-left: 2px solid #CCC;
+}
 
-  .first-section {
-   text-align: center;
-  }
-  .second-section {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .second-section p {
-    width: 25%; /* Adjust the width to fit four items in a row */
-    box-sizing: border-box;
-    padding: 5px;
-  }
-  
-  .separator {
-    margin: 20px 0; /* Adjust the margin to fit your layout needs */
-  }
-  
-  .third-section {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .third-section p {
-    width: 25%; /* Adjust the width to fit two items in a row */
-    box-sizing: border-box;
-    padding: 5px;
-  }
-  
-.dialog-actions button {
-    margin-left: 10px;
-    border-radius: 7px;
-background-color: #7191E6;
-color: beige;
-padding: 10px 20px; /* Increase padding for a larger button */
-border: none !important;
-  }
+.section {
+  padding: 0 20px; /* Add padding to separate content from the borders */
+  border-right: 2px solid #CCC;
+}
 
-  .dialog-actions button:hover{
-        background-color: #8797C2;
-        color: beige;
-    }
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 
+.section p {
+  font-size: 17px;
+  margin: 5px 0;
+}
 
-.tableContainer table{
+.section:last-child {
+  border-right: none; /* Remove border from the last column */
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.tableContainer table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 10px; /* Add border radius to the table */
+  overflow: hidden; /* Ensure the border radius is applied correctly */
+}
+
+.tableContainer th, .tableContainer td {
+  border: 1px solid #CCC;
+  padding: 8px;
+  text-align: left;
+}
+
+.tableContainer th {
+  background-color: #DDD;
+  font-weight: bold;
+}
+
+.separator {
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid #CCC;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: #EFE7F7;
+}
+
+.dialog-actions button {
+  margin-left: 10px;
+  border-radius: 7px;
+  background-color: #7191E6;
+  color: beige;
+  padding: 10px 20px;
+  border: none;
+}
+
+.dialog-actions button:hover {
+  background-color: #8797C2;
+  color: beige;
 }
