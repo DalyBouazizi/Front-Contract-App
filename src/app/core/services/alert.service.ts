@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { AlertModel } from '../models/AlertModel.model';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { AlertModel } from '../models/AlertModel.model';
 })
 export class AlertService {
 
-  private alertCountSubject = new Subject<number>();
+  private alertCountSubject = new BehaviorSubject<number>(0);
 
   constructor(private http :  HttpClient) {
     this.loadInitialAlertCount();
@@ -24,7 +24,11 @@ export class AlertService {
 
 
    getAlerts(): Observable<AlertModel[]> {
-     return this.http.get<AlertModel[]>(`${this.apiUrl}GetAllAlerts`);
+     return this.http.get<AlertModel[]>(`${this.apiUrl}GetAllAlerts`).pipe(
+      tap(alerts => {
+        this.alertCountSubject.next(alerts.length); // Refresh the alert count whenever getAlerts() is called
+      })
+    );;
    }
    addAlert(alert : AlertModel ) : Observable<string> {
      return this.http.post<string>(`${this.apiUrl}AddAlert`, alert , { responseType: 'text' as 'json' }).pipe(
