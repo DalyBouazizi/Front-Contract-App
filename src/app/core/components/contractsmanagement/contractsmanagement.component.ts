@@ -36,7 +36,9 @@ export class ContractsmanagementComponent {
   selectedStatus: string[] = [];
   Status: string[] = ['Recently Ended', 'Expiring Soon', 'Active', 'Expired'];
   FilterStartDate: Date | null = null;
-  FilterEndDate: Date | null = null;
+  FilterEndDate: Date | null = null; 
+isDropdownReady:boolean = false;  
+
 
   dropdownSettings = {
     singleSelection: false,
@@ -54,7 +56,7 @@ export class ContractsmanagementComponent {
     enableCheckAll: false,
     allowSearchFilter:false,
     itemsShowLimit: 0,
-    closeDropDownOnSelection: true
+   
   };
 
   ngOnInit(): void {
@@ -90,7 +92,13 @@ export class ContractsmanagementComponent {
            });
            this.navigationStateService.setContUpdated(false); // Reset state
           }
+
+          this.isDropdownReady = true;
   }
+
+
+
+  
 
   resetSelected(){
     this.selectedStatus = [];

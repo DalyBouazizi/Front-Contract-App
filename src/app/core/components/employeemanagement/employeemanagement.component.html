@@ -11,19 +11,21 @@
         </div>
        <div class="queryelements">
         
-        <ng-multiselect-dropdown
+        <ng-multiselect-dropdown *ngIf="isDropdownReady"
+        [settings]="dropdownSettings"
         [placeholder]="'Position'"
         [data]="jobPositions"
         [(ngModel)]="selectedPositions"
-        [settings]="dropdownSettings"
+     
        >
         
       </ng-multiselect-dropdown>
-        <ng-multiselect-dropdown
+        <ng-multiselect-dropdown *ngIf="isDropdownReady"
+        [settings]="dropdownSettings"
         [placeholder]="'Category'"
         [data]="Category"
         [(ngModel)]="selectedCategory"
-        [settings]="dropdownSettings"
+        
     >
         
       </ng-multiselect-dropdown>

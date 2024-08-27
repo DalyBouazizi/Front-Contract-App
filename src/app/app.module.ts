@@ -34,7 +34,6 @@ import { ContractupdateformComponent } from './core/components/contractupdatefor
 import { ContractNotifierComponent } from './core/components/contract-notifier/contract-notifier.component';
 import { AlertsmanagementComponent } from './core/components/alertsmanagement/alertsmanagement.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AnimateNumberPipe } from './core/pipes/animate-number.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -74,15 +73,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgMultiSelectDropDownModule.forRoot(),
     MatSliderModule,
     CanvasJSAngularChartsModule,
-    NgCircleProgressModule.forRoot({
-      // Set global options here if needed
-      radius: 60,
-      outerStrokeWidth: 10,
-      innerStrokeWidth: 5,
-      outerStrokeColor: "#4ca6a8",
-      innerStrokeColor: "#e7e8ea",
-      animationDuration: 300,
-    }),
+    
     BrowserAnimationsModule
   ],
   

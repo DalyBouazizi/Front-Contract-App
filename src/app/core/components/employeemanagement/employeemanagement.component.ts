@@ -40,6 +40,9 @@ dtElement!: DataTableDirective;
   maxAge: number | undefined;
   minSalary: number | undefined;
   maxSalary: number | undefined;
+
+  isDropdownReady = false;
+
   dropdownSettings = {
     singleSelection: false,
     idField: 'item_id',
@@ -108,6 +111,8 @@ dtElement!: DataTableDirective;
          });
          this.navigationStateService.setEmpUpdated(false); // Reset state
        }
+
+       this.isDropdownReady = true;
 
   }
 

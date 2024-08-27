@@ -84,18 +84,19 @@
             </span>
         </div>
       </div>
-      <div class="card2">
-        
-        <div class="pie">
-          <canvasjs-chart [options]="chartOptions2" [styles]="{width: '100%', height:'360px'}"  #chart1></canvasjs-chart>    
-      </div>  
-      </div>
-      <div class="card2">
-        
-        <div>
-          <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height: '360px'}"  #chart2></canvasjs-chart>    
-      </div>      
-     
+      <!-- <div *ngIf="dataLoaded === true"> -->
+        <div class="card2">
+          
+          <div class="pie">
+            <canvasjs-chart [options]="chartOptions2" [styles]="{width: '100%', height:'360px'}"  ></canvasjs-chart>    
+        </div>  
+        </div>
+        <div class="card2">
+          
+          <div>
+            <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height: '360px'}"  ></canvasjs-chart>    
+        </div>      
+      <!-- </div> -->
     </div>
     
   

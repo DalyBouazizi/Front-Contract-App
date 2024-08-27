@@ -9,9 +9,9 @@
                 </svg>
             
         </div>
-       <div class="queryelements">
+       <div class="queryelements" >
         
-        <ng-multiselect-dropdown
+        <ng-multiselect-dropdown *ngIf="isDropdownReady"
         [placeholder]="'Type'"
         [data]="Types"
         [(ngModel)]="selectedTypes"
@@ -19,7 +19,7 @@
        >
     </ng-multiselect-dropdown>
     
-        <ng-multiselect-dropdown
+        <ng-multiselect-dropdown *ngIf="isDropdownReady"
         [placeholder]="'Status'"
         [data]="Status"
         [(ngModel)]="selectedStatus"

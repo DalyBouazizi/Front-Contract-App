@@ -25,6 +25,8 @@ export class ContractrenewformComponent {
   Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
   OldOne : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
   id : number = -1;
+
+ 
   
 constructor(
   private navigationStateService : NavigationStateServiceService,
@@ -40,15 +42,15 @@ ngOnInit(): void {
   //Add 'implements OnInit' to the class.
   this.CombinedData = this.navigationStateService.getItemToRenew();
   console.log(this.CombinedData);
-  this.Employee = this.CombinedData.employee;
-  this.Contracts = this.CombinedData.contract;
- 
-  this.OldOne = this.Contracts[0];
 
- console.log(this.Employee);
-  console.log(this.Contracts);
-  console.log(this.OldOne);
+  this.Employee = this.CombinedData.employee;
+  this.Contracts = this.CombinedData.contracts;
+  this.OldOne = this.Contracts[0];
+ 
+
+
   this.FormValid = false;
+ 
 }
 
 isFormValid(): boolean {
@@ -94,7 +96,7 @@ onsubmit() {
           this.employeeservice.UpdateEmployee(this.Employee).subscribe({
             next: (response :string) => {
               
-              
+              console.log(this.OldOne.id);
               this.alerservice.deleteallalertforContractId(this.OldOne.id || 0).subscribe({
                 next: (response :string) => {
                  

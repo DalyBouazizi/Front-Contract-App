@@ -41,6 +41,9 @@ export class DashboardComponent implements OnInit {
   alertCountAnim: number = 0;
   averageSalaryAnim: number = 0;
 
+  // dataLoaded: boolean = false;
+
+
   constructor(
     private employeeService: EmployeeService,
     private contractService: ContractService,
@@ -57,7 +60,8 @@ export class DashboardComponent implements OnInit {
       this.employees = employees;
       this.calculateEmployeeStatistics();
       this.startAnimations(); 
-      // load the charts here
+  
+    //  console.log( this.employeesByCategoriePro['IT']);
     });
 
     this.contractService.getContracts().subscribe(contracts => {
@@ -69,6 +73,9 @@ export class DashboardComponent implements OnInit {
       this.alerts = alerts;
       this.alertCount = alerts.length;
     });
+
+    // this.dataLoaded = true; // Set this flag to true when all data is loaded
+
   }
 
   calculateEmployeeStatistics(): void {
@@ -108,6 +115,8 @@ export class DashboardComponent implements OnInit {
       const dept = this.averageSalaryByPosition[department];
       this.averageSalaryByPosition[department] = dept.count > 0 ? dept.totalSalary / dept.count : 0;
     }
+
+    
   }
 
   calculateContractStatistics(): void {
@@ -134,7 +143,7 @@ export class DashboardComponent implements OnInit {
     if (age >= 41 && age <= 50) return '41-50';
     return '51+';
   }
-
+  //animating numbers going up from 0 --------
   startAnimations(): void {
     this.animateEmployeeCount();
     this.animateContractCount();
@@ -181,50 +190,97 @@ export class DashboardComponent implements OnInit {
       }
     }, 50);
   }
+// --------- end of animations -----------
 
-  chartOptions = {
-    title: {
-      text: 'Employees Age Distribution',
-    },
-    theme: 'light2',
-    animationEnabled: true,
-    exportEnabled: true,
-    axisY: {
-      includeZero: true,
-    },
-    data: [
-      {
-        type: 'column',
-        color: '#01b8aa',
-        dataPoints: [
-          { label: '20-30', y: 10},
-          { label: '31-40', y: 10 },
-          { label: '41-50', y: 5},
-          { label: '51+', y: 1},
-        ],
-      },
-    ],
-  };
+//  // --------- start of charts--------
 
-  chartOptions2 = {
-    animationEnabled: true,
-    theme: "light2",
-    exportEnabled: true,
-    title: {
-      text: "Employees by Department"
-    },
-    data: [{
-      type: "pie",
-      indexLabel: "{name}: {y}",
+//   chartOptions = {
+//     title: {
+//       text: 'Employees Age Distribution',
+//     },
+//     theme: 'light2',
+//     animationEnabled: true,
+//     exportEnabled: true,
+//     axisY: {
+//       includeZero: true,
+//     },
+//     data: [
+//       {
+//         type: 'column',
+//         color: '#01b8aa',
+//         dataPoints: this.ageDistribution,
+//       },
+//     ],
+//   };
+
+// chartOptions2 = {
+//     animationEnabled: true,
+//     theme: "light2",
+//     exportEnabled: true,
+//     title: {
+//       text: "Employees by Department"
+//     },
+//     data: [{
+//       type: "pie",
+//       indexLabel: "{name}: {y}",
+//       dataPoints: [
+//         { name: "IT", y: this.employeesByCategoriePro['IT'] },
+//         { name: "Finance", y: this.employeesByCategoriePro['FINANCE'] },
+//         // Add other departments as needed
+//       ]
+//     }]
+//   };
+
+// // --------- end of charts--------
+
+// --------- start of fake chart --------
+
+chartOptions = {
+  title: {
+    text: 'Employees Age Distribution',
+  },
+  theme: 'light2',
+  animationEnabled: true,
+  exportEnabled: true,
+  axisY: {
+    includeZero: true,
+  },
+  data: [
+    {
+      type: 'column',
+      color: '#01b8aa',
       dataPoints: [
-        { name: "IT", y: 50 },
-        { name: "Finance", y: 40 },
-        { name: "Marketing", y: 20 },
-        { name: "Sales", y: 80 },
-        { name: "HR", y: 30 },
-        { name: "Management", y: 40 },
-        { name: "Others", y: 10 }
-      ]
-    }]
-  }
+        { label: '20-30', y: 10},
+        { label: '31-40', y: 10 },
+        { label: '41-50', y: 5},
+        { label: '51+', y: 1},
+      ],
+    },
+  ],
+};
+
+chartOptions2 = {
+  animationEnabled: true,
+  theme: "light2",
+  exportEnabled: true,
+  title: {
+    text: "Employees by Department"
+  },
+  data: [{
+    type: "pie",
+    indexLabel: "{name}: {y}",
+    dataPoints: [
+      { name: "IT", y: 50 },
+      { name: "Finance", y: 40 },
+      { name: "Marketing", y: 20 },
+      { name: "Sales", y: 80 },
+      { name: "HR", y: 30 },
+      { name: "Management", y: 40 },
+      { name: "Others", y: 10 }
+    ]
+  }]
+}
+
+// --------- end of fake chart --------
+
 }

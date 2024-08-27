@@ -79,9 +79,8 @@ isFormValid(): boolean {
          this.model.lieuNaissance.trim() !== '' &&
          this.model.dateNaissance !== null &&
          this.model.dateCin !== null &&
-         this.model.categoriePro.trim() !== ''&&
-         this.model.salaireb !== null &&
-         this.model.salairen!== null ;
+         this.model.categoriePro.trim() !== '';
+        
 }
 
 
