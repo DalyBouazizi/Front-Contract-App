@@ -120,15 +120,18 @@ dtElement!: DataTableDirective;
 
 // import export --------------------
 
-  exportToExcel(): void {
-    // Create a new workbook and add a worksheet
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.emps);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Employees');
+exportToExcel(): void {
+  // Create a new array of employees excluding 'salaireb' and 'salairen'
+  const employeesToExport = this.emps.map(({ salaireb, salairen, ...rest }) => rest);
 
-    // Save the workbook to a file
-    XLSX.writeFile(wb, 'employees.xlsx');
-  }
+  // Create a new workbook and add a worksheet
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(employeesToExport);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Employees');
+
+  // Save the workbook to a file
+  XLSX.writeFile(wb, 'employees.xlsx');
+}
 
   triggerFileInput(): void {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
