@@ -22,7 +22,7 @@ export class ContractupdateformComponent {
   ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',];
   Postes : string[] = ['Developer', 'Network administrator', 'Data analyst','...',];
   Catpro : string[] = ['HR', 'IT', 'CIT','FINANCE'];
-  Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
+  Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0,signature:false}; // Contract data
   id : number = -1;
   formattedDateDeb = '';
   formattedDateFin = '';

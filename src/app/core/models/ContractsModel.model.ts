@@ -6,4 +6,5 @@ export interface ContractsModel {
     salaireb?: number; // Optional property
     salairen?: number; // Optional property
     employeeId: number;
+    signature?: boolean;
 }

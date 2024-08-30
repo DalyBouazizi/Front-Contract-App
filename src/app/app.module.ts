@@ -36,6 +36,7 @@ import { AlertsmanagementComponent } from './core/components/alertsmanagement/al
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { AnimateNumberPipe } from './core/pipes/animate-number.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignatureDialogComponent } from './core/components/signature-dialog/signature-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContractupdateformComponent,
     ContractNotifierComponent,
     AlertsmanagementComponent,
-    AnimateNumberPipe
+    AnimateNumberPipe,
+    SignatureDialogComponent
   ],
   imports: [
     BrowserModule,

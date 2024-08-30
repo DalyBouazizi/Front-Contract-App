@@ -29,7 +29,7 @@ export class ContractaddformComponent {
  formattedDateNaissance = '';
  formattedDateCin = '';
  Employee : EmployeeGetModel = {id:0, nom: '', prenom: '', poste: '', adresse: '', dateNaissance: new Date(), lieuNaissance: '', cin: '', dateCin: new Date(), categoriePro: ''}; // Employee data
-Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0}; // Contract data
+Contract : ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0,signature:false}; // Contract data
 CombinedData: any = {};
 ContractTypes : string[] = ['CDI', 'CDD', 'CIVP',]; // Contract types for dropdown
 

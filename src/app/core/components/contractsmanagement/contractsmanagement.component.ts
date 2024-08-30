@@ -13,6 +13,7 @@ import { error } from 'node:console';
 import { AlertService } from '../../services/alert.service';
 import { ContractFilterCriteria } from '../../models/ContractFilterCriteriaModel.model';
 import { HttpParams } from '@angular/common/http';
+import { SignatureDialogComponent } from '../signature-dialog/signature-dialog.component';
 @Component({
   selector: 'app-contractsmanagement',
   templateUrl: './contractsmanagement.component.html',
@@ -30,6 +31,7 @@ export class ContractsmanagementComponent {
   Contracts : ContractsModel[] = []; 
   CombinedData: { contract: ContractsModel, employee: EmployeeGetModel }[] = []; // New array to store combined data
   today = new Date();
+  contractToSign: ContractsModel = { type:'', datedeb: new Date(), dateFin: new Date(), employeeId: 0,signature:false};
 
   selectedTypes: string[] = [];
   Types: string[] = ['CDD', 'CDI', 'CIVP'];
@@ -129,6 +131,46 @@ isDropdownReady:boolean = false;
     );
   
   
+  }
+
+  signcontract(idcontract: number) {
+    const dialogRef = this.dialog.open(SignatureDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.contractService.GetContractByContractId(idcontract).subscribe({
+          next: (response) => {
+            //--------
+            this.contractToSign = response;
+            this.contractToSign.signature = true;
+
+            this.contractService.UpdateContract(this.contractToSign)
+            .subscribe({
+              next: (response: string) => {
+                this.snackBar.open('Contract signed successfully!', 'Close', {
+                  duration: 3000, verticalPosition: 'top', panelClass: ['success-snackbar']
+                });
+                this.CombinedData = [];
+                this.fetchContracts();
+              },
+              error: (error) => {
+                this.snackBar.open('Failed to sign contract!', 'Close', {
+                  duration: 3000, verticalPosition: 'top', panelClass: ['error-snackbar']
+                });
+              }
+            });
+
+            //-----
+            
+          },
+          error: (error) => {
+            console.log('Error status:', error.status);  // Log HTTP status code
+          
+          }
+
+        });
+       
+      }
+    });
   }
 
   
